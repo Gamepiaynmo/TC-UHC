@@ -1,8 +1,8 @@
 // The project name, starts with lower case letter, should obey Java variable naming rules
-rootProject.name = 'myproject'
+rootProject.name = 'tchuc'
 
 // The version of the mod
-gradle.ext.modVersion = 'v' + new java.text.SimpleDateFormat('yy_MM_dd').format(new Date())
+gradle.ext.modVersion = 'v1.4.5-migrate'
 
 // Set to 'client' to make a client-only jar mod, 'server' to make it server-only and 'both' to make it both
 // Only 'server' is fully supported currently
@@ -12,7 +12,7 @@ gradle.ext.side = 'server'
 gradle.ext.mcVersion = '1.12'
 
 // The MCP mappings to use
-gradle.ext.mappings = 'snapshot_20161116' // Same as MCP 4.10
+gradle.ext.mappings = 'stable_39' // latest
 
 // Whether the source should contain javadocs. false is recommended, set to true for compatibility with MCP.
 gradle.ext.useJavadocs = true
