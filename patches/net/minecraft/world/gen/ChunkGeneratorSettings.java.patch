@@ -1,0 +1,24 @@
+--- ../src-base/minecraft/net/minecraft/world/gen/ChunkGeneratorSettings.java
++++ ../src-work/minecraft/net/minecraft/world/gen/ChunkGeneratorSettings.java
+@@ -374,6 +374,21 @@
+             this.field_177897_ay = 1;
+             this.field_177895_az = 16;
+             this.field_177889_aA = 16;
++
++            // TC Plugin
++            this.field_177935_ad = 10;
++            this.field_177939_ah = 6;
++            this.field_177922_ai = 4;
++            this.field_177920_al = 4;
++            this.field_177930_am = 1;
++            this.field_177926_ao = 20;
++            this.field_177928_ap = 4;
++            this.field_177908_aq = 4;
++            this.field_177902_at = 4;
++            this.field_177910_ax = 4;
++            this.field_177897_ay = 2;
++            this.field_177895_az = 20;
++            this.field_177889_aA = 10;
+         }
+ 
+         public boolean equals(Object p_equals_1_)

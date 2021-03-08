@@ -1,0 +1,25 @@
+--- ../src-base/minecraft/net/minecraft/world/gen/feature/WorldGenMinable.java
++++ ../src-work/minecraft/net/minecraft/world/gen/feature/WorldGenMinable.java
+@@ -75,7 +75,9 @@
+ 
+                                     if (this.field_175919_c.apply(p_180709_1_.func_180495_p(blockpos)))
+                                     {
+-                                        p_180709_1_.func_180501_a(blockpos, this.field_175920_a, 2);
++                                        // TC Plugin: added isValidPosition check
++                                        if (isValidPosition(p_180709_1_, blockpos))
++                                            p_180709_1_.func_180501_a(blockpos, this.field_175920_a, 2);
+                                     }
+                                 }
+                             }
+@@ -88,6 +90,11 @@
+         return true;
+     }
+ 
++    // TC Plugin
++    protected boolean isValidPosition(World world, BlockPos pos) {
++        return true;
++    }
++
+     static class StonePredicate implements Predicate<IBlockState>
+     {
+         private StonePredicate()

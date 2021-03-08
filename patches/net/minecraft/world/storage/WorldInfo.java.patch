@@ -1,0 +1,12 @@
+--- ../src-base/minecraft/net/minecraft/world/storage/WorldInfo.java
++++ ../src-work/minecraft/net/minecraft/world/storage/WorldInfo.java
+@@ -327,7 +327,8 @@
+     private void func_76064_a(NBTTagCompound p_76064_1_, NBTTagCompound p_76064_2_)
+     {
+         NBTTagCompound nbttagcompound = new NBTTagCompound();
+-        nbttagcompound.func_74778_a("Name", "1.12");
++        // TC Plugin:
++        nbttagcompound.func_74778_a("Name", "1.12-pre7");
+         nbttagcompound.func_74768_a("Id", 1139);
+         nbttagcompound.func_74757_a("Snapshot", false);
+         p_76064_1_.func_74782_a("Version", nbttagcompound);
