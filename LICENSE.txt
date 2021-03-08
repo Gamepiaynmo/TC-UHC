@@ -1,0 +1,8 @@
+THE JAR MOD BUILD SYSTEM LICENSE
+
+You may:
+- Copy this build system for your own use
+- Modify your copy of the build system
+
+You may not:
+- Claim you wrote the whole build system, even if it's partially modified

@@ -1,0 +1,38 @@
+# Eclipse
+/bin
+/.settings
+/.classpath
+/eclipse/
+.project
+
+# IDEA
+/.idea
+/classes
+*.iml
+
+# Gradle
+/build
+/.gradle
+/buildSrc/build
+/buildSrc/.gradle
+
+# Stuff we're not allowed to upload
+/projects/
+/repo/
+/src/
+/resources/
+
+# Patch rejects
+/patches-/
+*.patch.rej
+
+# MC stuff
+banned-ips.json
+banned-players.json
+eula.txt
+ops.json
+server.properties
+usercache.json
+whitelist.json
+logs/
+world/
