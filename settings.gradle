@@ -2,7 +2,7 @@
 rootProject.name = 'tcuhc'
 
 // The version of the mod
-gradle.ext.modVersion = 'v1.4.5-migrate'
+gradle.ext.modVersion = 'v1.4.5'
 
 // Set to 'client' to make a client-only jar mod, 'server' to make it server-only and 'both' to make it both
 // Only 'server' is fully supported currently
