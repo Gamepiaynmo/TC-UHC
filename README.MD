@@ -1,8 +1,8 @@
 # TC UHC
 
-初始化：`gradle setupTcuhc`
+初始化工程 / 从 patch 生成 `src` 中的源码：`gradle setupTcuhc`。注意，这将覆盖 `src` 文件夹内的所有文件
 
-编辑 src 路径下的源码
+编辑 `src` 路径下的源码
 
 生成 patch 并复制新增的自定义类至 `tcuhcSrc`：`gradle genPatches`
 

@@ -53,10 +53,11 @@
          if (!p_174889_1_.func_175149_v())
          {
              if (this.field_145987_o < 0)
-@@ -335,6 +367,10 @@
+@@ -335,6 +367,11 @@
  
      public void func_174886_c(EntityPlayer p_174886_1_)
      {
++        // TC Plugin
 +        if (!p_174886_1_.func_184812_l_() && !p_174886_1_.func_175149_v() && this.func_145818_k_() && this.field_190577_o.equals("Bonus Chest")) {
 +            this.func_190575_a("Opened Bonus Chest");
 +        }
