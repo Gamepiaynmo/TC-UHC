@@ -1,0 +1,18 @@
+--- ../src-base/minecraft/net/minecraft/command/ServerCommandManager.java
++++ ../src-work/minecraft/net/minecraft/command/ServerCommandManager.java
+@@ -1,5 +1,6 @@
+ package net.minecraft.command;
+ 
++import cn.topologycraft.uhc.GameCommand;
+ import net.minecraft.command.server.CommandBanIp;
+ import net.minecraft.command.server.CommandBanPlayer;
+ import net.minecraft.command.server.CommandBroadcast;
+@@ -107,6 +108,8 @@
+             this.func_71560_a(new CommandListPlayers());
+             this.func_71560_a(new CommandWhitelist());
+             this.func_71560_a(new CommandSetPlayerTimeout());
++            // TC Plugin: Add UHC Command
++            this.func_71560_a(new GameCommand());
+         }
+         else
+         {

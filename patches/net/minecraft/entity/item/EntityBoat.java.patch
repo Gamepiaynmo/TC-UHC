@@ -1,0 +1,20 @@
+--- ../src-base/minecraft/net/minecraft/entity/item/EntityBoat.java
++++ ../src-work/minecraft/net/minecraft/entity/item/EntityBoat.java
+@@ -11,6 +11,7 @@
+ import net.minecraft.entity.EntityLivingBase;
+ import net.minecraft.entity.MoverType;
+ import net.minecraft.entity.passive.EntityAnimal;
++import net.minecraft.entity.passive.EntityVillager;
+ import net.minecraft.entity.passive.EntityWaterMob;
+ import net.minecraft.entity.player.EntityPlayer;
+ import net.minecraft.init.Blocks;
+@@ -308,7 +309,8 @@
+ 
+                 if (!entity.func_184196_w(this))
+                 {
+-                    if (flag && this.func_184188_bt().size() < 2 && !entity.func_184218_aH() && entity.field_70130_N < this.field_70130_N && entity instanceof EntityLivingBase && !(entity instanceof EntityWaterMob) && !(entity instanceof EntityPlayer))
++                    // TC Plugin: added villager check
++                    if (flag && this.func_184188_bt().size() < 2 && !entity.func_184218_aH() && entity.field_70130_N < this.field_70130_N && entity instanceof EntityLivingBase && !(entity instanceof EntityWaterMob) && !(entity instanceof EntityPlayer) && !(entity instanceof EntityVillager))
+                     {
+                         entity.func_184220_m(this);
+                     }

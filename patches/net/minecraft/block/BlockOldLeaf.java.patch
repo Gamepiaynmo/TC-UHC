@@ -1,0 +1,12 @@
+--- ../src-base/minecraft/net/minecraft/block/BlockOldLeaf.java
++++ ../src-work/minecraft/net/minecraft/block/BlockOldLeaf.java
+@@ -32,7 +32,8 @@
+ 
+     protected void func_176234_a(World p_176234_1_, BlockPos p_176234_2_, IBlockState p_176234_3_, int p_176234_4_)
+     {
+-        if (p_176234_3_.func_177229_b(field_176239_P) == BlockPlanks.EnumType.OAK && p_176234_1_.field_73012_v.nextInt(p_176234_4_) == 0)
++        // TC Plugin: removed dark oak check
++        if (p_176234_1_.field_73012_v.nextInt(p_176234_4_) == 0)
+         {
+             func_180635_a(p_176234_1_, p_176234_2_, new ItemStack(Items.field_151034_e));
+         }

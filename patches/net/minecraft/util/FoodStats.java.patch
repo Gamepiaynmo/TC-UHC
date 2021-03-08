@@ -1,0 +1,12 @@
+--- ../src-base/minecraft/net/minecraft/util/FoodStats.java
++++ ../src-work/minecraft/net/minecraft/util/FoodStats.java
+@@ -128,6 +128,9 @@
+         return this.field_75125_b;
+     }
+ 
++    // TC Plugin
++    public void setSaturationLevel(float saturationLevel) { this.field_75125_b = saturationLevel; }
++
+     public void func_75114_a(int p_75114_1_)
+     {
+         this.field_75127_a = p_75114_1_;

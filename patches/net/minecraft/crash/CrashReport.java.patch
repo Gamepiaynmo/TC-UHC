@@ -1,0 +1,12 @@
+--- ../src-base/minecraft/net/minecraft/crash/CrashReport.java
++++ ../src-work/minecraft/net/minecraft/crash/CrashReport.java
+@@ -44,7 +44,8 @@
+         {
+             public String call()
+             {
+-                return "1.12";
++                // TC Plugin:
++                return "1.12-pre7";
+             }
+         });
+         this.field_85061_c.func_189529_a("Operating System", new ICrashReportDetail<String>()

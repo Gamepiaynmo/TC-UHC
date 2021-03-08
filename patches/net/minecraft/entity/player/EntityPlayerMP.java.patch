@@ -1,0 +1,239 @@
+--- ../src-base/minecraft/net/minecraft/entity/player/EntityPlayerMP.java
++++ ../src-work/minecraft/net/minecraft/entity/player/EntityPlayerMP.java
+@@ -2,6 +2,8 @@
+ 
+ import com.google.common.collect.Lists;
+ import com.mojang.authlib.GameProfile;
++import cn.topologycraft.uhc.GameManager;
++import cn.topologycraft.uhc.GamePlayer.EnumStat;
+ import io.netty.buffer.Unpooled;
+ import java.util.Collection;
+ import java.util.Iterator;
+@@ -114,6 +116,121 @@
+ import org.apache.logging.log4j.LogManager;
+ import org.apache.logging.log4j.Logger;
+ 
++
++import cn.topologycraft.uhc.GameManager;
++import cn.topologycraft.uhc.GamePlayer.EnumStat;
++import io.netty.buffer.Unpooled;
++import java.util.Collection;
++import java.util.Iterator;
++import java.util.List;
++import javax.annotation.Nullable;
++import net.minecraft.advancements.CriteriaTriggers;
++import net.minecraft.advancements.PlayerAdvancements;
++import net.minecraft.block.Block;
++import net.minecraft.block.BlockFence;
++import net.minecraft.block.BlockFenceGate;
++import net.minecraft.block.BlockWall;
++import net.minecraft.block.material.Material;
++import net.minecraft.block.state.IBlockState;
++import net.minecraft.crash.CrashReport;
++import net.minecraft.crash.CrashReportCategory;
++import net.minecraft.entity.Entity;
++import net.minecraft.entity.EntityList;
++import net.minecraft.entity.EntityLivingBase;
++import net.minecraft.entity.IMerchant;
++import net.minecraft.entity.passive.AbstractHorse;
++import net.minecraft.entity.projectile.EntityArrow;
++import net.minecraft.init.Items;
++import net.minecraft.init.MobEffects;
++import net.minecraft.init.SoundEvents;
++import net.minecraft.inventory.Container;
++import net.minecraft.inventory.ContainerChest;
++import net.minecraft.inventory.ContainerHorseInventory;
++import net.minecraft.inventory.ContainerMerchant;
++import net.minecraft.inventory.IContainerListener;
++import net.minecraft.inventory.IInventory;
++import net.minecraft.inventory.SlotCrafting;
++import net.minecraft.item.Item;
++import net.minecraft.item.ItemMapBase;
++import net.minecraft.item.ItemStack;
++import net.minecraft.item.crafting.CraftingManager;
++import net.minecraft.item.crafting.IRecipe;
++import net.minecraft.nbt.NBTTagCompound;
++import net.minecraft.network.NetHandlerPlayServer;
++import net.minecraft.network.Packet;
++import net.minecraft.network.PacketBuffer;
++import net.minecraft.network.play.client.CPacketClientSettings;
++import net.minecraft.network.play.server.SPacketAnimation;
++import net.minecraft.network.play.server.SPacketCamera;
++import net.minecraft.network.play.server.SPacketChangeGameState;
++import net.minecraft.network.play.server.SPacketChat;
++import net.minecraft.network.play.server.SPacketCloseWindow;
++import net.minecraft.network.play.server.SPacketCombatEvent;
++import net.minecraft.network.play.server.SPacketCustomPayload;
++import net.minecraft.network.play.server.SPacketDestroyEntities;
++import net.minecraft.network.play.server.SPacketEffect;
++import net.minecraft.network.play.server.SPacketEntityEffect;
++import net.minecraft.network.play.server.SPacketEntityStatus;
++import net.minecraft.network.play.server.SPacketOpenWindow;
++import net.minecraft.network.play.server.SPacketPlayerAbilities;
++import net.minecraft.network.play.server.SPacketRemoveEntityEffect;
++import net.minecraft.network.play.server.SPacketResourcePackSend;
++import net.minecraft.network.play.server.SPacketSetExperience;
++import net.minecraft.network.play.server.SPacketSetSlot;
++import net.minecraft.network.play.server.SPacketSignEditorOpen;
++import net.minecraft.network.play.server.SPacketSoundEffect;
++import net.minecraft.network.play.server.SPacketUpdateHealth;
++import net.minecraft.network.play.server.SPacketUpdateTileEntity;
++import net.minecraft.network.play.server.SPacketUseBed;
++import net.minecraft.network.play.server.SPacketWindowItems;
++import net.minecraft.network.play.server.SPacketWindowProperty;
++import net.minecraft.potion.PotionEffect;
++import net.minecraft.scoreboard.IScoreCriteria;
++import net.minecraft.scoreboard.Score;
++import net.minecraft.scoreboard.ScoreObjective;
++import net.minecraft.scoreboard.ScorePlayerTeam;
++import net.minecraft.scoreboard.Team;
++import net.minecraft.server.MinecraftServer;
++import net.minecraft.server.management.PlayerInteractionManager;
++import net.minecraft.server.management.UserListOpsEntry;
++import net.minecraft.stats.RecipeBookServer;
++import net.minecraft.stats.StatBase;
++import net.minecraft.stats.StatList;
++import net.minecraft.stats.StatisticsManagerServer;
++import net.minecraft.tileentity.TileEntity;
++import net.minecraft.tileentity.TileEntityCommandBlock;
++import net.minecraft.tileentity.TileEntitySign;
++import net.minecraft.util.CooldownTracker;
++import net.minecraft.util.CooldownTrackerServer;
++import net.minecraft.util.DamageSource;
++import net.minecraft.util.EntityDamageSource;
++import net.minecraft.util.EnumHand;
++import net.minecraft.util.EnumHandSide;
++import net.minecraft.util.NonNullList;
++import net.minecraft.util.ReportedException;
++import net.minecraft.util.ResourceLocation;
++import net.minecraft.util.SoundCategory;
++import net.minecraft.util.datafix.DataFixer;
++import net.minecraft.util.datafix.FixTypes;
++import net.minecraft.util.datafix.IDataFixer;
++import net.minecraft.util.datafix.IDataWalker;
++import net.minecraft.util.math.BlockPos;
++import net.minecraft.util.math.MathHelper;
++import net.minecraft.util.math.Vec3d;
++import net.minecraft.util.text.ChatType;
++import net.minecraft.util.text.ITextComponent;
++import net.minecraft.util.text.Style;
++import net.minecraft.util.text.TextComponentTranslation;
++import net.minecraft.util.text.TextFormatting;
++import net.minecraft.village.MerchantRecipeList;
++import net.minecraft.world.GameType;
++import net.minecraft.world.IInteractionObject;
++import net.minecraft.world.ILockableContainer;
++import net.minecraft.world.WorldServer;
++import net.minecraft.world.storage.loot.ILootContainer;
++import org.apache.logging.log4j.LogManager;
++import org.apache.logging.log4j.Logger;
++
+ public class EntityPlayerMP extends EntityPlayer implements IContainerListener
+ {
+     private static final Logger field_147102_bM = LogManager.getLogger();
+@@ -500,7 +617,8 @@
+         if (!this.field_70170_p.func_82736_K().func_82766_b("keepInventory") && !this.func_175149_v())
+         {
+             this.func_190776_cN();
+-            this.field_71071_by.func_70436_m();
++            // TC Plugin: dropAllItemsWithoutClear
++            this.field_71071_by.dropAllItemsWithoutClear();
+         }
+ 
+         for (ScoreObjective scoreobjective : this.field_70170_p.func_96441_U().func_96520_a(IScoreCriteria.field_96642_c))
+@@ -523,11 +641,21 @@
+             entitylivingbase.func_191956_a(this, this.field_70744_aE, p_70645_1_);
+         }
+ 
++        // TC Plugin
++        Entity sourceEntity = p_70645_1_.func_76364_f();
++        if (sourceEntity == null || !(sourceEntity instanceof EntityPlayerMP)) sourceEntity = p_70645_1_.func_76346_g();
++        if (sourceEntity != null && sourceEntity instanceof EntityPlayerMP) {
++            GameManager.instance.getPlayerManager().getGamePlayer((EntityPlayerMP) sourceEntity).getStat().addStat(EnumStat.PLAYER_KILLED, 1);
++        }
++
+         this.func_71029_a(StatList.field_188069_A);
+         this.func_175145_a(StatList.field_188098_h);
+         this.func_70066_B();
+         this.func_70052_a(0, false);
+         this.func_110142_aN().func_94549_h();
++
++        // TC Plugin: Player Death Hook
++        GameManager.instance.onPlayerDeath(this, p_70645_1_);
+     }
+ 
+     public void func_191956_a(Entity p_191956_1_, int p_191956_2_, DamageSource p_191956_3_)
+@@ -629,7 +757,23 @@
+                     }
+                 }
+ 
+-                return super.func_70097_a(p_70097_1_, p_70097_2_);
++
++                // TC Plugin
++                p_70097_2_ = GameManager.instance.modifyPlayerDamage(p_70097_2_);
++
++                Entity sourceEntity = p_70097_1_.func_76364_f();
++                if (sourceEntity == null || !(sourceEntity instanceof EntityPlayerMP)) sourceEntity = p_70097_1_.func_76346_g();
++                if (sourceEntity != null && sourceEntity instanceof EntityPlayerMP) {
++                    GameManager.instance.getPlayerManager().getGamePlayer(this).getStat().addStat(EnumStat.DAMAGE_TAKEN, p_70097_2_);
++                    GameManager.instance.getPlayerManager().getGamePlayer((EntityPlayerMP) sourceEntity).getStat().addStat(EnumStat.DAMAGE_DEALT, p_70097_2_);
++                }
++
++                // TC Plugin: Player Damage Hook
++                if (super.func_70097_a(p_70097_1_, p_70097_2_)) {
++                    GameManager.instance.onPlayerDamaged(this, p_70097_1_, p_70097_2_);
++                    return true;
++                } else return false;
++                // TC Plugin ends
+             }
+         }
+     }
+@@ -1359,18 +1503,28 @@
+         return (Entity)(this.field_175401_bS == null ? this : this.field_175401_bS);
+     }
+ 
+-    public void func_175399_e(Entity p_175399_1_)
++    // TC Plugin: added check param
++    public void setSpectatingEntity(Entity entityToSpectate, boolean check)
+     {
+         Entity entity = this.func_175398_C();
+-        this.field_175401_bS = (Entity)(p_175399_1_ == null ? this : p_175399_1_);
++        this.field_175401_bS = (Entity)(entityToSpectate == null ? this : entityToSpectate);
+ 
+-        if (entity != this.field_175401_bS)
+-        {
+-            this.field_71135_a.func_147359_a(new SPacketCamera(this.field_175401_bS));
+-            this.func_70634_a(this.field_175401_bS.field_70165_t, this.field_175401_bS.field_70163_u, this.field_175401_bS.field_70161_v);
+-        }
++        // TC Plugin: Player Spectate Hook
++        if (check) this.field_175401_bS = GameManager.instance.onPlayerSpectate(this, field_175401_bS, entity);
++
++//		if (entity != this.spectatingEntity) {
++//			this.connection.sendPacket(new SPacketCamera(this.spectatingEntity));
++//			this.setPositionAndUpdate(this.spectatingEntity.posX, this.spectatingEntity.posY, this.spectatingEntity.posZ);
++//		}
++
++        this.field_71135_a.func_147359_a(new SPacketCamera(this.field_175401_bS));
++        this.func_70634_a(this.field_175401_bS.field_70165_t, this.field_175401_bS.field_70163_u, this.field_175401_bS.field_70161_v);
+     }
+ 
++    public void func_175399_e(Entity p_175399_1_) {
++        setSpectatingEntity(p_175399_1_, true);
++    }
++
+     protected void func_184173_H()
+     {
+         if (this.field_71088_bW > 0 && !this.field_184851_cj)
+@@ -1439,4 +1593,12 @@
+     {
+         return this.field_193110_cw;
+     }
++
++    // TC Plugin: Heal Hook
++    @Override
++    public void func_70691_i(float healAmount) {
++        float health = this.func_110143_aJ();
++        super.func_70691_i(healAmount);
++        GameManager.instance.getPlayerManager().getGamePlayer(this).getStat().addStat(EnumStat.HEALTH_HEALED, func_110143_aJ() - health);
++    }
+ }

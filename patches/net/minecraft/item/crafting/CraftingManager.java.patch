@@ -1,0 +1,13 @@
+--- ../src-base/minecraft/net/minecraft/item/crafting/CraftingManager.java
++++ ../src-work/minecraft/net/minecraft/item/crafting/CraftingManager.java
+@@ -53,6 +53,10 @@
+             func_193379_a("banneraddpattern", new RecipesBanners.RecipeAddPattern());
+             func_193379_a("shielddecoration", new ShieldRecipes.Decoration());
+             func_193379_a("shulkerboxcoloring", new ShulkerBoxRecipes.ShulkerBoxColoring());
++
++            // TC Plugin
++            func_193379_a("goldenapple", new RecipeGoldenApple());
++            func_193379_a("armorrepair", new RecipeArmorRepair());
+             return func_192420_c();
+         }
+         catch (Throwable var1)

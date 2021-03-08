@@ -1,0 +1,28 @@
+--- ../src-base/minecraft/net/minecraft/block/BlockOre.java
++++ ../src-work/minecraft/net/minecraft/block/BlockOre.java
+@@ -53,7 +53,8 @@
+ 
+     public int func_149745_a(Random p_149745_1_)
+     {
+-        return this == Blocks.field_150369_x ? 4 + p_149745_1_.nextInt(5) : 1;
++        // TC Plugin:
++        return this == Blocks.field_150369_x ? 2 : 1;
+     }
+ 
+     public int func_149679_a(int p_149679_1_, Random p_149679_2_)
+@@ -99,10 +100,11 @@
+             {
+                 i = MathHelper.func_76136_a(p_180653_1_.field_73012_v, 2, 5);
+             }
+-            else if (this == Blocks.field_150449_bY)
+-            {
+-                i = MathHelper.func_76136_a(p_180653_1_.field_73012_v, 2, 5);
+-            }
++            // TC Plugin: prevent quartz ore from dropping xp
++//            else if (this == Blocks.QUARTZ_ORE)
++//            {
++//                i = MathHelper.getInt(worldIn.rand, 2, 5);
++//            }
+ 
+             this.func_180637_b(p_180653_1_, p_180653_2_, i);
+         }

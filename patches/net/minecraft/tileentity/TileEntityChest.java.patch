@@ -1,0 +1,66 @@
+--- ../src-base/minecraft/net/minecraft/tileentity/TileEntityChest.java
++++ ../src-work/minecraft/net/minecraft/tileentity/TileEntityChest.java
+@@ -1,6 +1,8 @@
+ package net.minecraft.tileentity;
+ 
+ import javax.annotation.Nullable;
++import cn.topologycraft.uhc.GameManager;
++import cn.topologycraft.uhc.GamePlayer.EnumStat;
+ import net.minecraft.block.Block;
+ import net.minecraft.block.BlockChest;
+ import net.minecraft.entity.player.EntityPlayer;
+@@ -23,6 +25,31 @@
+ import net.minecraft.util.math.AxisAlignedBB;
+ import net.minecraft.util.math.BlockPos;
+ 
++
++import cn.topologycraft.uhc.GameManager;
++import cn.topologycraft.uhc.GamePlayer.EnumStat;
++import net.minecraft.block.Block;
++import net.minecraft.block.BlockChest;
++import net.minecraft.entity.player.EntityPlayer;
++import net.minecraft.entity.player.InventoryPlayer;
++import net.minecraft.init.SoundEvents;
++import net.minecraft.inventory.Container;
++import net.minecraft.inventory.ContainerChest;
++import net.minecraft.inventory.IInventory;
++import net.minecraft.inventory.InventoryLargeChest;
++import net.minecraft.inventory.ItemStackHelper;
++import net.minecraft.item.ItemStack;
++import net.minecraft.nbt.NBTTagCompound;
++import net.minecraft.util.EnumFacing;
++import net.minecraft.util.ITickable;
++import net.minecraft.util.NonNullList;
++import net.minecraft.util.SoundCategory;
++import net.minecraft.util.datafix.DataFixer;
++import net.minecraft.util.datafix.FixTypes;
++import net.minecraft.util.datafix.walkers.ItemStackDataLists;
++import net.minecraft.util.math.AxisAlignedBB;
++import net.minecraft.util.math.BlockPos;
++
+ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
+ {
+     private NonNullList<ItemStack> field_145985_p = NonNullList.<ItemStack>func_191197_a(27, ItemStack.field_190927_a);
+@@ -315,6 +342,11 @@
+ 
+     public void func_174889_b(EntityPlayer p_174889_1_)
+     {
++        // TC Plugin
++        if (!p_174889_1_.func_184812_l_() && !p_174889_1_.func_175149_v() && this.func_145818_k_() && this.field_190577_o.equals("Bonus Chest")) {
++            GameManager.instance.getPlayerManager().getGamePlayer(p_174889_1_).getStat().addStat(EnumStat.CHEST_FOUND, 1);
++        }
++
+         if (!p_174889_1_.func_175149_v())
+         {
+             if (this.field_145987_o < 0)
+@@ -335,6 +367,10 @@
+ 
+     public void func_174886_c(EntityPlayer p_174886_1_)
+     {
++        if (!p_174886_1_.func_184812_l_() && !p_174886_1_.func_175149_v() && this.func_145818_k_() && this.field_190577_o.equals("Bonus Chest")) {
++            this.func_190575_a("Opened Bonus Chest");
++        }
++
+         if (!p_174886_1_.func_175149_v() && this.func_145838_q() instanceof BlockChest)
+         {
+             --this.field_145987_o;

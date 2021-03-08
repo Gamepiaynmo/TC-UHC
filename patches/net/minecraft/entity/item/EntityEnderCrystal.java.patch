@@ -1,0 +1,57 @@
+--- ../src-base/minecraft/net/minecraft/entity/item/EntityEnderCrystal.java
++++ ../src-work/minecraft/net/minecraft/entity/item/EntityEnderCrystal.java
+@@ -4,6 +4,8 @@
+ import javax.annotation.Nullable;
+ import net.minecraft.entity.Entity;
+ import net.minecraft.entity.boss.EntityDragon;
++import net.minecraft.entity.player.EntityPlayer;
++import net.minecraft.entity.player.EntityPlayerMP;
+ import net.minecraft.init.Blocks;
+ import net.minecraft.nbt.NBTTagCompound;
+ import net.minecraft.nbt.NBTUtil;
+@@ -22,6 +24,9 @@
+     private static final DataParameter<Boolean> field_184522_c = EntityDataManager.<Boolean>func_187226_a(EntityEnderCrystal.class, DataSerializers.field_187198_h);
+     public int field_70261_a;
+ 
++    // TC Plugin
++    private EntityPlayer target;
++
+     public EntityEnderCrystal(World p_i1698_1_)
+     {
+         super(p_i1698_1_);
+@@ -62,6 +67,35 @@
+             {
+                 this.field_70170_p.func_175656_a(blockpos, Blocks.field_150480_ab.func_176223_P());
+             }
++
++            // TC Plugin
++            this.func_184516_a(this.target == null ? null : new BlockPos(this.target.field_70165_t + 0.5, this.target.field_70163_u - 0.5, this.target.field_70161_v + 0.5));
++
++            if (this.field_70173_aa % 5 == 0) {
++                if (this.target != null && this.target.func_70068_e(this) < 1024 && this.target.func_70685_l(this)) {
++                    if (this.field_70173_aa % 20 == 0) {
++                        this.target.func_70097_a(DamageSource.causeEntityDamage(this), 1.0f);
++                    }
++                } else {
++                    double distance = this.target == null ? 1024 : this.target.func_70068_e(this);
++                    this.target = null;
++
++                    for (EntityPlayer player : this.field_70170_p.func_72872_a(EntityPlayer.class, this.func_174813_aQ().func_72321_a(32, 10, 32))) {
++                        EntityPlayerMP playermp = (EntityPlayerMP) player;
++
++                        if (playermp.func_184812_l_() || playermp.func_175149_v()) {
++                            continue;
++                        }
++
++                        double newdis = player.func_70068_e(this);
++                        if (newdis < distance && player.func_70685_l(this)) {
++                            distance = newdis;
++                            this.target = player;
++                        }
++                    }
++                }
++            }
++            // TC Plugin ends
+         }
+     }
+ 

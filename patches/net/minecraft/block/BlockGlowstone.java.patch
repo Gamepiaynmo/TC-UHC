@@ -1,0 +1,12 @@
+--- ../src-base/minecraft/net/minecraft/block/BlockGlowstone.java
++++ ../src-work/minecraft/net/minecraft/block/BlockGlowstone.java
+@@ -26,7 +26,8 @@
+ 
+     public int func_149745_a(Random p_149745_1_)
+     {
+-        return 2 + p_149745_1_.nextInt(3);
++        // TC Plugin: modified glowstone drop rate
++        return 1;
+     }
+ 
+     public Item func_180660_a(IBlockState p_180660_1_, Random p_180660_2_, int p_180660_3_)

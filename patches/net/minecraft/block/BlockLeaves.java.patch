@@ -1,0 +1,12 @@
+--- ../src-base/minecraft/net/minecraft/block/BlockLeaves.java
++++ ../src-work/minecraft/net/minecraft/block/BlockLeaves.java
+@@ -207,7 +207,8 @@
+                 func_180635_a(p_180653_1_, p_180653_2_, new ItemStack(item, 1, this.func_180651_a(p_180653_3_)));
+             }
+ 
+-            i = 200;
++            // TC Plugin: modified apple drop rate
++            i = 80;
+ 
+             if (p_180653_5_ > 0)
+             {

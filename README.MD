@@ -1,3 +1,15 @@
+# TC UHC
+
+初始化：`gradle setupTcuhc`
+
+编辑 src 路径下的源码
+
+生成 patch 并复制新增的自定义类至 `tcuhcSrc`：`gradle genPatches`
+
+编译生成可覆盖入 `mc.jar` 的 release：`gradle createRelease`
+
+----------
+
 # Jar Mod Build Template
 A build system for Jar Mods, modernized to use ForgeGradle rather than MCP.
 

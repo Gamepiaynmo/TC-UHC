@@ -1,0 +1,64 @@
+--- ../src-base/minecraft/net/minecraft/entity/projectile/EntitySpectralArrow.java
++++ ../src-work/minecraft/net/minecraft/entity/projectile/EntitySpectralArrow.java
+@@ -1,5 +1,6 @@
+ package net.minecraft.entity.projectile;
+ 
++import net.minecraft.block.Block;
+ import net.minecraft.entity.EntityLivingBase;
+ import net.minecraft.init.Items;
+ import net.minecraft.init.MobEffects;
+@@ -8,6 +9,8 @@
+ import net.minecraft.potion.PotionEffect;
+ import net.minecraft.util.EnumParticleTypes;
+ import net.minecraft.util.datafix.DataFixer;
++import net.minecraft.util.math.BlockPos;
++import net.minecraft.util.math.RayTraceResult;
+ import net.minecraft.world.World;
+ 
+ public class EntitySpectralArrow extends EntityArrow
+@@ -49,8 +52,45 @@
+         super.func_184548_a(p_184548_1_);
+         PotionEffect potioneffect = new PotionEffect(MobEffects.field_188423_x, this.field_184562_f, 0);
+         p_184548_1_.func_70690_d(potioneffect);
++
++        // TC Plugin
++        this.explode();
+     }
+ 
++    // TC Plugin
++    @Override
++    protected void func_184549_a(RayTraceResult raytraceResultIn) {
++        if (raytraceResultIn.field_72308_g == null && this.func_70241_g()) {
++            field_70165_t = raytraceResultIn.field_72307_f.field_72450_a;
++            field_70163_u = raytraceResultIn.field_72307_f.field_72448_b;
++            field_70161_v = raytraceResultIn.field_72307_f.field_72449_c;
++            this.explode();
++        }
++
++        if (!this.field_70128_L)
++            super.func_184549_a(raytraceResultIn);
++    }
++
++    private void explode() {
++        if (!this.func_70241_g())
++            return;
++        this.func_70106_y();
++        this.field_70170_p.func_72876_a(this, this.field_70165_t, this.field_70163_u, this.field_70161_v, 1.0F, true);
++        BlockPos arrowpos = new BlockPos(this);
++        if (field_70170_p.func_180495_p(arrowpos).func_177230_c().func_149638_a(null) > 6.01)
++            return;
++        for (int x = -1; x <= 1; x++)
++            for (int y = -2; y <= 1; y++)
++                for (int z = -1; z <= 1; z++) {
++                    BlockPos pos = arrowpos.func_177982_a(x, y, z);
++                    Block block = this.field_70170_p.func_180495_p(pos).func_177230_c();
++                    if (block.func_149638_a(null) < 6.01f) {
++                        this.field_70170_p.func_175698_g(pos);
++                    }
++                }
++    }
++    // TC Plugin ends
++
+     public static void func_189659_b(DataFixer p_189659_0_)
+     {
+         EntityArrow.func_189657_a(p_189659_0_, "SpectralArrow");

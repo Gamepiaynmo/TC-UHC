@@ -1,0 +1,20 @@
+--- ../src-base/minecraft/net/minecraft/entity/item/EntityMinecart.java
++++ ../src-work/minecraft/net/minecraft/entity/item/EntityMinecart.java
+@@ -12,6 +12,7 @@
+ import net.minecraft.entity.EntityLivingBase;
+ import net.minecraft.entity.MoverType;
+ import net.minecraft.entity.monster.EntityIronGolem;
++import net.minecraft.entity.passive.EntityVillager;
+ import net.minecraft.entity.player.EntityPlayer;
+ import net.minecraft.init.Blocks;
+ import net.minecraft.init.Items;
+@@ -361,7 +362,8 @@
+                     {
+                         Entity entity1 = list.get(j1);
+ 
+-                        if (!(entity1 instanceof EntityPlayer) && !(entity1 instanceof EntityIronGolem) && !(entity1 instanceof EntityMinecart) && !this.func_184207_aI() && !entity1.func_184218_aH())
++                        // TC Plugin: added villager check
++                        if (!(entity1 instanceof EntityPlayer) && !(entity1 instanceof EntityIronGolem) && !(entity1 instanceof EntityMinecart) && !(entity1 instanceof EntityVillager) && !this.func_184207_aI() && !entity1.func_184218_aH())
+                         {
+                             entity1.func_184220_m(this);
+                         }

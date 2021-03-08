@@ -1,5 +1,5 @@
 // The project name, starts with lower case letter, should obey Java variable naming rules
-rootProject.name = 'tchuc'
+rootProject.name = 'tcuhc'
 
 // The version of the mod
 gradle.ext.modVersion = 'v1.4.5-migrate'

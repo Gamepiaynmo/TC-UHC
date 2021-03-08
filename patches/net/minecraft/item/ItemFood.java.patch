@@ -1,0 +1,33 @@
+--- ../src-base/minecraft/net/minecraft/item/ItemFood.java
++++ ../src-work/minecraft/net/minecraft/item/ItemFood.java
+@@ -24,12 +24,17 @@
+     private PotionEffect field_77851_ca;
+     private float field_77858_cd;
+ 
++    // TC Plugin: added useDuration to constructor
+     public ItemFood(int p_i45339_1_, float p_i45339_2_, boolean p_i45339_3_)
+     {
+-        this.field_77855_a = 32;
+-        this.field_77853_b = p_i45339_1_;
+-        this.field_77856_bY = p_i45339_3_;
+-        this.field_77854_c = p_i45339_2_;
++        this(p_i45339_1_, p_i45339_2_, p_i45339_3_, 32);
++    }
++
++    public ItemFood(int amount, float saturation, boolean isWolfFood, int useDuration) {
++        this.field_77855_a = useDuration;
++        this.field_77853_b = amount;
++        this.field_77856_bY = isWolfFood;
++        this.field_77854_c = saturation;
+         this.func_77637_a(CreativeTabs.field_78039_h);
+     }
+ 
+@@ -68,7 +73,7 @@
+ 
+     public int func_77626_a(ItemStack p_77626_1_)
+     {
+-        return 32;
++        return this.field_77855_a;
+     }
+ 
+     public EnumAction func_77661_b(ItemStack p_77661_1_)

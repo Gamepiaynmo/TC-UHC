@@ -1,0 +1,12 @@
+--- ../src-base/minecraft/net/minecraft/profiler/Snooper.java
++++ ../src-work/minecraft/net/minecraft/profiler/Snooper.java
+@@ -85,7 +85,8 @@
+         this.func_152767_b("os_version", System.getProperty("os.version"));
+         this.func_152767_b("os_architecture", System.getProperty("os.arch"));
+         this.func_152767_b("java_version", System.getProperty("java.version"));
+-        this.func_152768_a("version", "1.12");
++        // TC Plugin:
++        this.func_152768_a("version", "1.12-pre7");
+         this.field_76478_d.func_70001_b(this);
+     }
+ 

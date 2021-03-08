@@ -1,0 +1,33 @@
+--- ../src-base/minecraft/net/minecraft/server/network/NetHandlerHandshakeTCP.java
++++ ../src-work/minecraft/net/minecraft/server/network/NetHandlerHandshakeTCP.java
+@@ -27,15 +27,18 @@
+             case LOGIN:
+                 this.field_147386_b.func_150723_a(EnumConnectionState.LOGIN);
+ 
+-                if (p_147383_1_.func_149595_d() > 335)
++                // TC Plugin: version number
++                // protocol version: 335 -> 334
++                // "1.12" -> "1.12-pre7"
++                if (p_147383_1_.func_149595_d() > 334)
+                 {
+-                    ITextComponent itextcomponent = new TextComponentTranslation("multiplayer.disconnect.outdated_server", new Object[] {"1.12"});
++                    ITextComponent itextcomponent = new TextComponentTranslation("multiplayer.disconnect.outdated_server", new Object[] {"1.12-pre7"});
+                     this.field_147386_b.func_179290_a(new SPacketDisconnect(itextcomponent));
+                     this.field_147386_b.func_150718_a(itextcomponent);
+                 }
+-                else if (p_147383_1_.func_149595_d() < 335)
++                else if (p_147383_1_.func_149595_d() < 334)
+                 {
+-                    ITextComponent itextcomponent1 = new TextComponentTranslation("multiplayer.disconnect.outdated_client", new Object[] {"1.12"});
++                    ITextComponent itextcomponent1 = new TextComponentTranslation("multiplayer.disconnect.outdated_client", new Object[] {"1.12-pre7"});
+                     this.field_147386_b.func_179290_a(new SPacketDisconnect(itextcomponent1));
+                     this.field_147386_b.func_150718_a(itextcomponent1);
+                 }
+@@ -43,6 +46,7 @@
+                 {
+                     this.field_147386_b.func_150719_a(new NetHandlerLoginServer(this.field_147387_a, this.field_147386_b));
+                 }
++                // TC Plugin: version number ends
+ 
+                 break;
+ 
