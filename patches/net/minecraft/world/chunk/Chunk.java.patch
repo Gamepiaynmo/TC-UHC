@@ -1,0 +1,88 @@
+--- ../src-base/minecraft/net/minecraft/world/chunk/Chunk.java
++++ ../src-work/minecraft/net/minecraft/world/chunk/Chunk.java
+@@ -3,6 +3,7 @@
+ import com.google.common.base.Predicate;
+ import com.google.common.collect.Maps;
+ import com.google.common.collect.Queues;
++import cn.topologycraft.uhc.GameManager;
+ import java.util.Arrays;
+ import java.util.List;
+ import java.util.Map;
+@@ -38,6 +39,44 @@
+ import org.apache.logging.log4j.LogManager;
+ import org.apache.logging.log4j.Logger;
+ 
++
++import cn.topologycraft.uhc.GameManager;
++
++import java.util.Arrays;
++import java.util.List;
++import java.util.Map;
++import java.util.Random;
++import java.util.concurrent.ConcurrentLinkedQueue;
++import javax.annotation.Nullable;
++import net.minecraft.block.Block;
++import net.minecraft.block.ITileEntityProvider;
++import net.minecraft.block.material.Material;
++import net.minecraft.block.state.IBlockState;
++import net.minecraft.crash.CrashReport;
++import net.minecraft.crash.CrashReportCategory;
++import net.minecraft.crash.ICrashReportDetail;
++import net.minecraft.entity.Entity;
++import net.minecraft.init.Biomes;
++import net.minecraft.init.Blocks;
++import net.minecraft.tileentity.TileEntity;
++import net.minecraft.util.ClassInheritanceMultiMap;
++import net.minecraft.util.EnumFacing;
++import net.minecraft.util.ReportedException;
++import net.minecraft.util.math.AxisAlignedBB;
++import net.minecraft.util.math.BlockPos;
++import net.minecraft.util.math.ChunkPos;
++import net.minecraft.util.math.MathHelper;
++import net.minecraft.world.EnumSkyBlock;
++import net.minecraft.world.World;
++import net.minecraft.world.WorldType;
++import net.minecraft.world.biome.Biome;
++import net.minecraft.world.biome.BiomeProvider;
++import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
++import net.minecraft.world.gen.ChunkGeneratorDebug;
++import net.minecraft.world.gen.IChunkGenerator;
++import org.apache.logging.log4j.LogManager;
++import org.apache.logging.log4j.Logger;
++
+ public class Chunk
+ {
+     private static final Logger field_150817_t = LogManager.getLogger();
+@@ -66,6 +105,9 @@
+     private final ConcurrentLinkedQueue<BlockPos> field_177447_w;
+     public boolean field_189550_d;
+ 
++    // TC Plugin: Light Update Timer
++    private int chunkLoaded;
++
+     public Chunk(World p_i1995_1_, int p_i1995_2_, int p_i1995_3_)
+     {
+         this.field_76652_q = new ExtendedBlockStorage[16];
+@@ -1011,6 +1053,12 @@
+ 
+     public void func_150804_b(boolean p_150804_1_)
+     {
++        // TC Plugin
++        if (!GameManager.instance.isPregenerating() && chunkLoaded < 1000) {
++            this.field_76650_s = false;
++            this.field_150814_l = true;
++        }
++
+         if (this.field_76650_s && this.field_76637_e.field_73011_w.func_191066_m() && !p_150804_1_)
+         {
+             this.func_150803_c(this.field_76637_e.field_72995_K);
+@@ -1018,6 +1066,9 @@
+ 
+         this.field_150815_m = true;
+ 
++        // TC Plugin
++        this.chunkLoaded++;
++
+         if (!this.field_150814_l && this.field_76646_k)
+         {
+             this.func_150809_p();

@@ -1,0 +1,26 @@
+--- ../src-base/minecraft/net/minecraft/world/gen/MapGenCaves.java
++++ ../src-work/minecraft/net/minecraft/world/gen/MapGenCaves.java
+@@ -264,12 +264,20 @@
+ 
+     protected void func_180701_a(World p_180701_1_, int p_180701_2_, int p_180701_3_, int p_180701_4_, int p_180701_5_, ChunkPrimer p_180701_6_)
+     {
+-        int i = this.field_75038_b.nextInt(this.field_75038_b.nextInt(this.field_75038_b.nextInt(15) + 1) + 1);
++//        int i = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(15) + 1) + 1);
++//
++//        if (this.rand.nextInt(7) != 0)
++//        {
++//            i = 0;
++//        }
+ 
+-        if (this.field_75038_b.nextInt(7) != 0)
+-        {
++        // TC Plugin
++        int i = this.field_75038_b.nextInt(5);
++
++        if (this.field_75038_b.nextInt(2) != 0) {
+             i = 0;
+         }
++        // TC Plugin ends
+ 
+         for (int j = 0; j < i; ++j)
+         {

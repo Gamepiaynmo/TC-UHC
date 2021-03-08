@@ -1,0 +1,38 @@
+--- ../src-base/minecraft/net/minecraft/world/gen/layer/GenLayer.java
++++ ../src-work/minecraft/net/minecraft/world/gen/layer/GenLayer.java
+@@ -1,5 +1,6 @@
+ package net.minecraft.world.gen.layer;
+ 
++import cn.topologycraft.uhc.gen.GenLayerPureLand;
+ import net.minecraft.init.Biomes;
+ import net.minecraft.world.WorldType;
+ import net.minecraft.world.biome.Biome;
+@@ -14,15 +15,19 @@
+ 
+     public static GenLayer[] func_180781_a(long p_180781_0_, WorldType p_180781_2_, ChunkGeneratorSettings p_180781_3_)
+     {
+-        GenLayer genlayer = new GenLayerIsland(1L);
+-        genlayer = new GenLayerFuzzyZoom(2000L, genlayer);
+-        GenLayer genlayeraddisland = new GenLayerAddIsland(1L, genlayer);
+-        GenLayer genlayerzoom = new GenLayerZoom(2001L, genlayeraddisland);
+-        GenLayer genlayeraddisland1 = new GenLayerAddIsland(2L, genlayerzoom);
+-        genlayeraddisland1 = new GenLayerAddIsland(50L, genlayeraddisland1);
+-        genlayeraddisland1 = new GenLayerAddIsland(70L, genlayeraddisland1);
+-        GenLayer genlayerremovetoomuchocean = new GenLayerRemoveTooMuchOcean(2L, genlayeraddisland1);
+-        GenLayer genlayeraddsnow = new GenLayerAddSnow(2L, genlayerremovetoomuchocean);
++//        GenLayer genlayer = new GenLayerIsland(1L);
++//        genlayer = new GenLayerFuzzyZoom(2000L, genlayer);
++//        GenLayer genlayeraddisland = new GenLayerAddIsland(1L, genlayer);
++//        GenLayer genlayerzoom = new GenLayerZoom(2001L, genlayeraddisland);
++//        GenLayer genlayeraddisland1 = new GenLayerAddIsland(2L, genlayerzoom);
++//        genlayeraddisland1 = new GenLayerAddIsland(50L, genlayeraddisland1);
++//        genlayeraddisland1 = new GenLayerAddIsland(70L, genlayeraddisland1);
++//        GenLayer genlayerremovetoomuchocean = new GenLayerRemoveTooMuchOcean(2L, genlayeraddisland1);
++//        GenLayer genlayeraddsnow = new GenLayerAddSnow(2L, genlayerremovetoomuchocean);
++        // TC Plugin: Remove Oceans
++        GenLayer genlayer = new GenLayerPureLand(1L);
++        GenLayer genlayeraddsnow = new GenLayerAddSnow(2L, genlayer);
++
+         GenLayer genlayeraddisland2 = new GenLayerAddIsland(3L, genlayeraddsnow);
+         GenLayer genlayeredge = new GenLayerEdge(2L, genlayeraddisland2, GenLayerEdge.Mode.COOL_WARM);
+         genlayeredge = new GenLayerEdge(2L, genlayeredge, GenLayerEdge.Mode.HEAT_ICE);
