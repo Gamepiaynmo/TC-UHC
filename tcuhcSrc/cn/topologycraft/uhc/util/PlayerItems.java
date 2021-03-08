@@ -1,15 +1,14 @@
 package cn.topologycraft.uhc.util;
 
-import java.util.Map;
-
 import com.google.common.collect.Maps;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtils;
+
+import java.util.Map;
 
 public class PlayerItems {
 	

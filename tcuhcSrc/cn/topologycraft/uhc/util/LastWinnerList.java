@@ -1,20 +1,13 @@
 package cn.topologycraft.uhc.util;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.Reader;
-import java.io.Writer;
-import java.util.List;
-import java.util.Set;
-
-import org.apache.commons.io.IOUtils;
-
+import cn.topologycraft.uhc.GamePlayer;
 import com.google.common.base.Charsets;
 import com.google.common.collect.Sets;
 import com.google.common.io.Files;
+import org.apache.commons.io.IOUtils;
 
-import cn.topologycraft.uhc.GamePlayer;
+import java.io.*;
+import java.util.Set;
 
 public class LastWinnerList {
 	private Set<String> winnerList = Sets.newHashSet();

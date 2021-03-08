@@ -1,6 +1,14 @@
 --- ../src-base/minecraft/net/minecraft/item/crafting/CraftingManager.java
 +++ ../src-work/minecraft/net/minecraft/item/crafting/CraftingManager.java
-@@ -53,6 +53,10 @@
+@@ -1,5 +1,7 @@
+ package net.minecraft.item.crafting;
+ 
++import cn.topologycraft.uhc.recipe.RecipeArmorRepair;
++import cn.topologycraft.uhc.recipe.RecipeGoldenApple;
+ import com.google.gson.Gson;
+ import com.google.gson.GsonBuilder;
+ import com.google.gson.JsonObject;
+@@ -53,6 +55,10 @@
              func_193379_a("banneraddpattern", new RecipesBanners.RecipeAddPattern());
              func_193379_a("shielddecoration", new ShieldRecipes.Decoration());
              func_193379_a("shulkerboxcoloring", new ShulkerBoxRecipes.ShulkerBoxColoring());

@@ -1,12 +1,8 @@
 package cn.topologycraft.uhc.gen;
 
-import java.util.List;
-import java.util.Random;
-
-import com.google.common.collect.Lists;
-
 import cn.topologycraft.uhc.GameManager;
 import cn.topologycraft.uhc.options.Options;
+import com.google.common.collect.Lists;
 import net.minecraft.block.BlockBanner;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityEnderCrystal;
@@ -16,6 +12,9 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.List;
+import java.util.Random;
 
 public class MapGenEnderAltar extends WorldGenerator {
 

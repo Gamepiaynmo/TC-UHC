@@ -4,8 +4,6 @@ import cn.topologycraft.uhc.GameManager;
 import cn.topologycraft.uhc.options.Options;
 import cn.topologycraft.uhc.task.Task.TaskTimer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.scoreboard.ScoreObjective;
-import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.border.WorldBorder;

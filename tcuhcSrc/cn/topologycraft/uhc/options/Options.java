@@ -1,25 +1,21 @@
 package cn.topologycraft.uhc.options;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.Properties;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.google.common.collect.Maps;
-
 import cn.topologycraft.uhc.GameManager;
 import cn.topologycraft.uhc.GameManager.EnumMode;
 import cn.topologycraft.uhc.GamePlayer;
 import cn.topologycraft.uhc.task.Task;
+import com.google.common.collect.Maps;
 import net.minecraft.world.EnumDifficulty;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.Properties;
 
 public class Options {
 	private static final Logger LOGGER = LogManager.getLogger();

@@ -58,7 +58,7 @@ public class TaskNetherCave extends TaskTimer {
 			for (GamePlayer player : combatPlayers) {
 				player.getRealPlayer().ifPresent(playermp -> {
 					if (playermp.dimension != 0)
-						playermp.attackEntityFrom(DamageSource.spaceCollapse, 1.0f);
+						playermp.attackEntityFrom(DamageSource.IN_WALL, 1.0f);
 				});
 			}
 		}
@@ -101,7 +101,7 @@ public class TaskNetherCave extends TaskTimer {
 			for (int height : heights)
 				sum += height;
 			sum /= heights.size();
-			finalMinY = sum - 5;
+			finalMinY = sum - 10;
 			finalMaxY = sum + 20;
 
 			GameManager.instance.boardcastMessage(TextFormatting.DARK_RED + "Final Minimum Y: " + finalMinY);
@@ -122,7 +122,7 @@ public class TaskNetherCave extends TaskTimer {
 				player.getRealPlayer().ifPresent(playermp -> {
 					if (glow) playermp.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 200, 1, false, false));
 					if (playermp.posY < minY || playermp.posY > maxY)
-						playermp.attackEntityFrom(DamageSource.spaceCollapse, 1.0f);
+						playermp.attackEntityFrom(DamageSource.IN_WALL, 1.0f);
 
 					float particleY = -1;
 					if (playermp.posY < minY + 5)

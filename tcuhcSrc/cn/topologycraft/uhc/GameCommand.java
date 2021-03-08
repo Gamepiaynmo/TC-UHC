@@ -1,9 +1,5 @@
 package cn.topologycraft.uhc;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import cn.topologycraft.uhc.options.Options;
 import cn.topologycraft.uhc.task.TaskOnce;
 import net.minecraft.command.CommandBase;
@@ -15,6 +11,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class GameCommand extends CommandBase {
 

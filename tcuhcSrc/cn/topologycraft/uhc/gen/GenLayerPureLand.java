@@ -1,9 +1,9 @@
 package cn.topologycraft.uhc.gen;
 
-import java.util.Arrays;
-
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+
+import java.util.Arrays;
 
 public class GenLayerPureLand extends GenLayer {
 

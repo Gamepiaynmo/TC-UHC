@@ -1,11 +1,10 @@
 package cn.topologycraft.uhc;
 
-import java.util.List;
-
-import com.google.common.collect.Lists;
-
 import cn.topologycraft.uhc.GamePlayer.EnumStat;
+import com.google.common.collect.Lists;
 import net.minecraft.util.text.TextFormatting;
+
+import java.util.List;
 
 public class GameTeam {
 	
@@ -14,7 +13,7 @@ public class GameTeam {
 	
 	public GameTeam setColorTeam(GameColor color) { type.setColor(color); players.clear(); return this; }
 	public GameTeam setPlayerTeam(GamePlayer player) { type.setPlayer(player); players.clear(); addPlayer(player); return this; }
-	public String getTeamName() { return type.name; }
+	public String getTeamName() { return type.teamName; }
 	public String getColorfulTeamName() { return type.getColorfulName(); }
 	public GameColor getTeamColor() { return type.color; }
 	
@@ -39,21 +38,21 @@ public class GameTeam {
 	}
 	
 	static class TeamType {
-		
 		private GameColor color = GameColor.WHITE;
 		private GamePlayer player;
-		private String name = "Team Empty";
+		private String name = "Team Empty", teamName = "Team Empty";
 		
 		public void setColor(GameColor color) {
 			this.color = color;
 			player = null;
-			name = "Team " + color.name;
+			teamName = name = "Team " + color.name;
 		}
 		
 		public void setPlayer(GamePlayer player) {
 			this.player = player;
 			color = GameColor.randomColor();
-			name = "Team " + player.getName();
+			teamName = player.getName();
+			name = "Team " + teamName;
 		}
 		
 		public String getColorfulName() {

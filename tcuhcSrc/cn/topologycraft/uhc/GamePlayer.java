@@ -1,18 +1,16 @@
 package cn.topologycraft.uhc;
 
+import cn.topologycraft.uhc.options.Options;
+import cn.topologycraft.uhc.task.Taskable;
+import com.google.common.collect.Maps;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.math.BlockPos;
+
 import java.lang.ref.WeakReference;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-
-import com.google.common.collect.Maps;
-
-import cn.topologycraft.uhc.options.Options;
-import cn.topologycraft.uhc.task.Taskable;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.EnumDyeColor;
-import net.minecraft.util.math.BlockPos;
 
 public class GamePlayer extends Taskable {
 	

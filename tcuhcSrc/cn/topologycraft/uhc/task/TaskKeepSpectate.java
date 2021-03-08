@@ -3,7 +3,6 @@ package cn.topologycraft.uhc.task;
 import cn.topologycraft.uhc.GameManager;
 import cn.topologycraft.uhc.GamePlayer;
 import cn.topologycraft.uhc.task.Task.TaskTimer;
-import cn.topologycraft.uhc.util.SpectateTargetUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.play.client.CPacketSpectate;
 

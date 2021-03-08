@@ -1,20 +1,11 @@
 package cn.topologycraft.uhc;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import com.google.common.collect.Lists;
-
 import cn.topologycraft.uhc.GameManager.EnumMode;
 import cn.topologycraft.uhc.GamePlayer.EnumStat;
 import cn.topologycraft.uhc.task.TaskFindPlayer;
 import cn.topologycraft.uhc.task.TaskKeepSpectate;
-import cn.topologycraft.uhc.util.BookNBT;
-import cn.topologycraft.uhc.util.PlayerItems;
-import cn.topologycraft.uhc.util.SpawnPlatform;
-import cn.topologycraft.uhc.util.SpawnPosition;
-import cn.topologycraft.uhc.util.SpectateTargetUtil;
+import cn.topologycraft.uhc.util.*;
+import com.google.common.collect.Lists;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -30,7 +21,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.Team.CollisionRule;
-import net.minecraft.server.dedicated.DedicatedServer;
 import net.minecraft.server.management.PlayerList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
@@ -42,6 +32,10 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.GameType;
 import net.minecraft.world.World;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public class PlayerManager {
 	
@@ -276,7 +270,6 @@ public class PlayerManager {
 			else if (source == DamageSource.CACTUS) msg += "cactus";
 			else if (source == DamageSource.FALL) msg += "falling";
 			else if (source == DamageSource.FLY_INTO_WALL) msg += "flying into wall";
-			else if (source == DamageSource.spaceCollapse) msg += "space collapse";
 			else if (source == DamageSource.OUT_OF_WORLD) msg += "out of world";
 			else if (source == DamageSource.GENERIC) msg += "unknown";
 			else if (source == DamageSource.MAGIC) msg += "magic";

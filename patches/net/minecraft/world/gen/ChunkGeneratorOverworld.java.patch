@@ -10,41 +10,7 @@
  import net.minecraft.block.BlockFalling;
  import net.minecraft.block.state.IBlockState;
  import net.minecraft.entity.EnumCreatureType;
-@@ -26,6 +29,33 @@
- import net.minecraft.world.gen.structure.StructureOceanMonument;
- import net.minecraft.world.gen.structure.WoodlandMansion;
- 
-+
-+import cn.topologycraft.uhc.gen.MapGenBonusChest;
-+import cn.topologycraft.uhc.gen.MapGenEnderAltar;
-+import cn.topologycraft.uhc.gen.MapGenMerchants;
-+import net.minecraft.block.BlockFalling;
-+import net.minecraft.block.state.IBlockState;
-+import net.minecraft.entity.EnumCreatureType;
-+import net.minecraft.init.Biomes;
-+import net.minecraft.init.Blocks;
-+import net.minecraft.util.math.BlockPos;
-+import net.minecraft.util.math.ChunkPos;
-+import net.minecraft.util.math.MathHelper;
-+import net.minecraft.world.World;
-+import net.minecraft.world.WorldEntitySpawner;
-+import net.minecraft.world.WorldType;
-+import net.minecraft.world.biome.Biome;
-+import net.minecraft.world.chunk.Chunk;
-+import net.minecraft.world.chunk.ChunkPrimer;
-+import net.minecraft.world.gen.feature.WorldGenDungeons;
-+import net.minecraft.world.gen.feature.WorldGenLakes;
-+import net.minecraft.world.gen.structure.MapGenMineshaft;
-+import net.minecraft.world.gen.structure.MapGenScatteredFeature;
-+import net.minecraft.world.gen.structure.MapGenStronghold;
-+import net.minecraft.world.gen.structure.MapGenVillage;
-+import net.minecraft.world.gen.structure.StructureOceanMonument;
-+import net.minecraft.world.gen.structure.WoodlandMansion;
-+
- public class ChunkGeneratorOverworld implements IChunkGenerator
- {
-     protected static final IBlockState field_185982_a = Blocks.field_150348_b.func_176223_P();
-@@ -403,6 +433,11 @@
+@@ -403,6 +406,11 @@
              }
          }
  

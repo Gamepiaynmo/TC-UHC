@@ -1,7 +1,5 @@
 package cn.topologycraft.uhc;
 
-import java.util.Random;
-
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.text.TextFormatting;
 

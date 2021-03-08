@@ -1,7 +1,5 @@
 package cn.topologycraft.uhc.util;
 
-import java.util.Random;
-
 import cn.topologycraft.uhc.GameManager;
 import cn.topologycraft.uhc.task.TaskSpawnPlatformProtect;
 import net.minecraft.block.BlockCarpet;
@@ -11,6 +9,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class SpawnPlatform {
 	public static int height = 160;

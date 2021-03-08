@@ -3,7 +3,6 @@ package cn.topologycraft.uhc.task;
 import cn.topologycraft.uhc.GameManager;
 import cn.topologycraft.uhc.util.SpawnPlatform;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.math.BlockPos;
 
 public class TaskSpawnPlatformProtect extends Task {
 	

@@ -1,7 +1,5 @@
 package cn.topologycraft.uhc.util;
 
-import java.util.Optional;
-
 import cn.topologycraft.uhc.GameColor;
 import cn.topologycraft.uhc.GameManager;
 import cn.topologycraft.uhc.GamePlayer;
@@ -18,6 +16,8 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
+
+import java.util.Optional;
 
 public class BookNBT {
 	

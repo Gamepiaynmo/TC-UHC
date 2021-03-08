@@ -1,15 +1,8 @@
 package cn.topologycraft.uhc.gen;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
-import java.util.function.Supplier;
-
+import cn.topologycraft.uhc.GameManager;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-
-import cn.topologycraft.uhc.GameManager;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.init.Biomes;
@@ -25,6 +18,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
+import java.util.function.Supplier;
 
 public class MapGenBonusChest extends WorldGenerator {
 

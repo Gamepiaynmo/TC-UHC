@@ -1,11 +1,11 @@
 package cn.topologycraft.uhc.task;
 
-import java.io.File;
-import java.io.IOException;
-
 import cn.topologycraft.uhc.GameManager;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.gen.ChunkProviderServer;
+
+import java.io.File;
+import java.io.IOException;
 
 public class TaskPregenerate extends Task {
 	private int size;

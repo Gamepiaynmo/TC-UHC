@@ -13,10 +13,10 @@ public class TaskBoardcastData extends TaskTimer {
 	}
 	
 	private String getGraph(int len) {
-		String res = "";
+		StringBuilder res = new StringBuilder();
 		for (int i = 0; i < len; i++)
-			res += "█";
-		return res;
+			res.append("*");
+		return res.toString();
 	}
 	
 	@Override

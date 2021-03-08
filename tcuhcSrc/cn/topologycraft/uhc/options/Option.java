@@ -1,6 +1,5 @@
 package cn.topologycraft.uhc.options;
 
-import cn.topologycraft.uhc.GameManager;
 import cn.topologycraft.uhc.task.Task;
 import cn.topologycraft.uhc.task.Taskable;
 

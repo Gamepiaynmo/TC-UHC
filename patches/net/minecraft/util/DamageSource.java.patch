@@ -1,17 +1,6 @@
 --- ../src-base/minecraft/net/minecraft/util/DamageSource.java
 +++ ../src-work/minecraft/net/minecraft/util/DamageSource.java
-@@ -34,6 +34,10 @@
-     public static final DamageSource field_82729_p = new DamageSource("fallingBlock");
-     public static final DamageSource field_188407_q = (new DamageSource("dragonBreath")).func_76348_h();
-     public static final DamageSource field_191552_t = (new DamageSource("fireworks")).func_94540_d();
-+
-+    // TC Plugin: Space Collapse Damage
-+    public static final DamageSource spaceCollapse = new DamageSource("spaceCollapse").func_76348_h();
-+
-     private boolean field_76374_o;
-     private boolean field_76385_p;
-     private boolean field_151520_r;
-@@ -50,6 +54,12 @@
+@@ -50,6 +50,12 @@
          return new EntityDamageSource("mob", p_76358_0_);
      }
  

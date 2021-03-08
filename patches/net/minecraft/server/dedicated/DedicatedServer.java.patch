@@ -8,56 +8,7 @@
  import java.io.BufferedReader;
  import java.io.File;
  import java.io.IOException;
-@@ -43,6 +44,48 @@
- import org.apache.logging.log4j.LogManager;
- import org.apache.logging.log4j.Logger;
- 
-+
-+import cn.topologycraft.uhc.GameManager;
-+
-+import java.io.BufferedReader;
-+import java.io.File;
-+import java.io.IOException;
-+import java.io.InputStreamReader;
-+import java.net.InetAddress;
-+import java.net.Proxy;
-+import java.nio.charset.StandardCharsets;
-+import java.util.Collections;
-+import java.util.List;
-+import java.util.Random;
-+import java.util.concurrent.TimeUnit;
-+import java.util.regex.Pattern;
-+import net.minecraft.command.ICommandSender;
-+import net.minecraft.crash.CrashReport;
-+import net.minecraft.crash.ICrashReportDetail;
-+import net.minecraft.entity.player.EntityPlayer;
-+import net.minecraft.network.rcon.IServer;
-+import net.minecraft.network.rcon.RConConsoleSource;
-+import net.minecraft.network.rcon.RConThreadMain;
-+import net.minecraft.network.rcon.RConThreadQuery;
-+import net.minecraft.profiler.Snooper;
-+import net.minecraft.server.MinecraftServer;
-+import net.minecraft.server.ServerEula;
-+import net.minecraft.server.gui.MinecraftServerGui;
-+import net.minecraft.server.management.PlayerProfileCache;
-+import net.minecraft.server.management.PreYggdrasilConverter;
-+import net.minecraft.tileentity.TileEntitySkull;
-+import net.minecraft.util.CryptManager;
-+import net.minecraft.util.datafix.DataFixer;
-+import net.minecraft.util.math.BlockPos;
-+import net.minecraft.util.math.MathHelper;
-+import net.minecraft.world.EnumDifficulty;
-+import net.minecraft.world.GameType;
-+import net.minecraft.world.World;
-+import net.minecraft.world.WorldSettings;
-+import net.minecraft.world.WorldType;
-+import org.apache.logging.log4j.LogManager;
-+import org.apache.logging.log4j.Logger;
-+
- public class DedicatedServer extends MinecraftServer implements IServer
- {
-     private static final Logger field_155771_h = LogManager.getLogger();
-@@ -107,7 +150,8 @@
+@@ -107,7 +108,8 @@
          };
          thread.setDaemon(true);
          thread.start();
@@ -67,7 +18,7 @@
  
          if (Runtime.getRuntime().maxMemory() / 1024L / 1024L < 512L)
          {
-@@ -214,6 +258,9 @@
+@@ -214,6 +216,9 @@
                      this.func_71261_m(this.field_71340_o.func_73671_a("level-name", "world"));
                  }
  
@@ -77,7 +28,7 @@
                  String s = this.field_71340_o.func_73671_a("level-seed", "");
                  String s1 = this.field_71340_o.func_73671_a("level-type", "DEFAULT");
                  String s2 = this.field_71340_o.func_73671_a("generator-settings", "");
-@@ -251,6 +298,10 @@
+@@ -251,6 +256,10 @@
                  this.func_71191_d((this.func_71207_Z() + 8) / 16 * 16);
                  this.func_71191_d(MathHelper.func_76125_a(this.func_71207_Z(), 64, 256));
                  this.field_71340_o.func_73667_a("max-build-height", Integer.valueOf(this.func_71207_Z()));
@@ -88,7 +39,7 @@
                  TileEntitySkull.func_184293_a(this.func_152358_ax());
                  TileEntitySkull.func_184294_a(this.func_147130_as());
                  PlayerProfileCache.func_187320_a(this.func_71266_T());
-@@ -260,6 +311,9 @@
+@@ -260,6 +269,9 @@
                  String s3 = String.format("%.3fs", (double)i1 / 1.0E9D);
                  field_155771_h.info("Done ({})! For help, type \"help\" or \"?\"", (Object)s3);
  
