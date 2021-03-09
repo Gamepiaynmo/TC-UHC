@@ -230,14 +230,14 @@ public class GameManager extends Taskable {
 	
 	private void onTeamWin(GameTeam team) {
 		TitleUtil.sendTitleToAllPlayers(team.getColorfulTeamName() + " Wins !", "Congratulations !");
-		this.boardcastMessage(team.getColorfulTeamName() + " is the winner !");
+		this.broadcastMessage(team.getColorfulTeamName() + " is the winner !");
 		for (GamePlayer player : playerManager.getCombatPlayers()) {
 			if (player.getStat().getFloatStat(EnumStat.ALIVE_TIME) < 1)
 				player.getStat().setStat(EnumStat.ALIVE_TIME, uhcOptions.getIntegerOptionValue("gameTime") - this.getGameTimeRemaining());
 		}
 		winnerList.setWinner(team.getPlayers());
 		this.endGame();
-		this.addTask(new TaskBoardcastData(160));
+		this.addTask(new TaskBroadcastData(160));
 	}
 	
 	private void initWorlds() {
@@ -310,7 +310,7 @@ public class GameManager extends Taskable {
 		SpawnPlatform.generateSafePlatform(mcServer.worlds[0]);
 	}
 	
-	public void boardcastMessage(String msg) {
+	public void broadcastMessage(String msg) {
 		ITextComponent text = new TextComponentString(msg);
 		playerList.getPlayers().forEach(player -> player.sendMessage(text));
 		LOG.info(msg);

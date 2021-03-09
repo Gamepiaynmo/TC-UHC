@@ -182,16 +182,16 @@ public class PlayerManager {
 	public void onPlayerChat(EntityPlayerMP player, String msg) {
 		if (msg == null) return;
 		if (!gameManager.isGamePlaying()) {
-			gameManager.boardcastMessage(chatMessage(player, msg, false));
+			gameManager.broadcastMessage(chatMessage(player, msg, false));
 			return;
 		}
 		if (msg.startsWith("p ")) {
-			gameManager.boardcastMessage(chatMessage(player, msg.substring(2), false));
+			gameManager.broadcastMessage(chatMessage(player, msg.substring(2), false));
 			return;
 		}
 		GamePlayer gamePlayer = getGamePlayer(player);
 		if (gamePlayer.getTeam() == null || gamePlayer.getTeam().getAliveCount() == 0) {
-			gameManager.boardcastMessage(chatMessage(player, msg, false));
+			gameManager.broadcastMessage(chatMessage(player, msg, false));
 			return;
 		}
 		String message = chatMessage(player, msg, true);
@@ -308,7 +308,7 @@ public class PlayerManager {
 			if (player.getTeam().getAliveCount() == 0) {
 				gameManager.checkWinner();
 			} else this.deadPotionEffects(player.getTeam());
-			gameManager.boardcastMessage(player.getTeam().getTeamColor().chatColor + player.getName() + TextFormatting.WHITE + " got -1s.");
+			gameManager.broadcastMessage(player.getTeam().getTeamColor().chatColor + player.getName() + TextFormatting.WHITE + " got -1s.");
 		});
 	}
 	
@@ -318,7 +318,7 @@ public class PlayerManager {
 			player.isAlive = true;
 			player.getStat().setStat(EnumStat.ALIVE_TIME, 0);
 			player.getRealPlayer().ifPresent(playermp -> playermp.setGameType(GameType.SURVIVAL));
-			gameManager.boardcastMessage(player.getTeam().getTeamColor().chatColor + player.getName() + TextFormatting.WHITE + " got +1s.");
+			gameManager.broadcastMessage(player.getTeam().getTeamColor().chatColor + player.getName() + TextFormatting.WHITE + " got +1s.");
 		});
 	}
 	
@@ -506,10 +506,10 @@ public class PlayerManager {
 			spTeam.setSuffix(TextFormatting.RESET.toString());
 			spTeam.setAllowFriendlyFire(teamFire);
 			spTeam.setCollisionRule(teamColl ? CollisionRule.ALWAYS : CollisionRule.HIDE_FOR_OWN_TEAM);
-			gameManager.boardcastMessage(team.getColorfulTeamName() + " Members:");
+			gameManager.broadcastMessage(team.getColorfulTeamName() + " Members:");
 			for (GamePlayer player : team.getPlayers()) {
 				scoreboard.addPlayerToTeam(player.getName(), team.getTeamName());
-				gameManager.boardcastMessage("    " + team.getTeamColor().chatColor + player.getName());
+				gameManager.broadcastMessage("    " + team.getTeamColor().chatColor + player.getName());
 			}
 		}
 	}

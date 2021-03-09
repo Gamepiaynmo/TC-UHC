@@ -24,14 +24,14 @@ public class TaskBorderReminder extends TaskTimer {
 		gameTime = options.getIntegerOptionValue("gameTime");
 		border = GameManager.instance.getMinecraftServer().worlds[0].getWorldBorder();
 		border.setTransition(borderStart, borderEnd, (borderEndTime - borderStartTime) * 1000);
-		GameManager.instance.boardcastMessage(TextFormatting.DARK_RED + "World border started to shrink.");
+		GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "World border started to shrink.");
 	}
 	
 	@Override
 	public void onTimer() {
 		if (this.hasFinished()) return;
 		if (gameTime - GameManager.instance.getGameTimeRemaining() >= borderEndTime) {
-			GameManager.instance.boardcastMessage(TextFormatting.DARK_RED + "World border stopped shrinking.");
+			GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "World border stopped shrinking.");
 			this.setCanceled();
 		}
 		for (EntityPlayerMP player : GameManager.instance.getPlayerList().getPlayers()) {

@@ -51,9 +51,9 @@ public class TaskNetherCave extends TaskTimer {
 		
 		int netherTime = netherCloseTime - timePast;
 		if (netherTime > 0 && netherTime <= 120 && netherTime % 30 == 0) {
-			GameManager.instance.boardcastMessage(TextFormatting.DARK_RED + "Nether will be closed in " + netherTime + " seconds.");
+			GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "Nether will be closed in " + netherTime + " seconds.");
 		} else if (netherTime == 0) {
-			GameManager.instance.boardcastMessage(TextFormatting.DARK_RED + "Nether closed.");
+			GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "Nether closed.");
 		} else if (netherTime < 0) {
 			for (GamePlayer player : combatPlayers) {
 				player.getRealPlayer().ifPresent(playermp -> {
@@ -65,9 +65,9 @@ public class TaskNetherCave extends TaskTimer {
 		
 		int caveTime = caveCloseTime - timePast;
 		if (caveTime > 0 && caveTime <= 120 && caveTime % 30 == 0) {
-			GameManager.instance.boardcastMessage(TextFormatting.DARK_RED + "Caves will be closed in " + caveTime + " seconds.");
+			GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "Caves will be closed in " + caveTime + " seconds.");
 		} else if (caveTime == 0) {
-			GameManager.instance.boardcastMessage(TextFormatting.DARK_RED + "Caves closed.");
+			GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "Caves closed.");
 			WorldBorder border = GameManager.instance.getMinecraftServer().worlds[0].getWorldBorder();
 			int finalSize = (int) border.getDiameter() / 2;
 			Random random = new Random();
@@ -104,8 +104,8 @@ public class TaskNetherCave extends TaskTimer {
 			finalMinY = sum - 10;
 			finalMaxY = sum + 20;
 
-			GameManager.instance.boardcastMessage(TextFormatting.DARK_RED + "Final Minimum Y: " + finalMinY);
-			GameManager.instance.boardcastMessage(TextFormatting.DARK_RED + "Final Maximum Y: " + finalMaxY);
+			GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "Final Minimum Y: " + finalMinY);
+			GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "Final Maximum Y: " + finalMaxY);
 		} else if (caveTime < 0) {
 			caveTime = -caveTime;
 			boolean glow = caveTime % 60 == 0;
