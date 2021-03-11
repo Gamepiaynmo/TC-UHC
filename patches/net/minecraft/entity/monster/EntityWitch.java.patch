@@ -1,0 +1,12 @@
+--- ../src-base/minecraft/net/minecraft/entity/monster/EntityWitch.java
++++ ../src-work/minecraft/net/minecraft/entity/monster/EntityWitch.java
+@@ -50,6 +50,9 @@
+     {
+         super(p_i1744_1_);
+         this.func_70105_a(0.6F, 1.95F);
++
++        // TC Plugin: change witch potion drop chance to 100%
++        this.field_82174_bp[EntityEquipmentSlot.MAINHAND.func_188454_b()] = 2.0F;
+     }
+ 
+     public static void func_189776_b(DataFixer p_189776_0_)
