@@ -29,7 +29,7 @@
              this.field_177906_ar = 0;
              this.field_177904_as = 16;
 -            this.field_177902_at = 8;
-+            this.field_177902_at = 4;
++            this.field_177902_at = 5;
              this.field_177916_au = 1;
              this.field_177914_av = 0;
              this.field_177912_aw = 16;

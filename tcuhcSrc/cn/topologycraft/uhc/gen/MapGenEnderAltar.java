@@ -26,13 +26,15 @@ public class MapGenEnderAltar extends WorldGenerator {
 
 	private void calcAltarPosition() {
 		if (altarPoses.isEmpty()) {
-			int border = Options.instance.getIntegerOptionValue("borderStart");
-			border *= 0.45;
+			int start = Options.instance.getIntegerOptionValue("borderStart") / 2;
+			int end = Options.instance.getIntegerOptionValue("borderEnd") / 2;
+			start = (start - end) / 2;
+
 			for (int i = 0; i < 4; i++) {
 				int x = i / 2 == 1 ? 1 : -1;
 				int z = i % 2 == 1 ? 1 : -1;
-				x *= GameManager.instance.rand.nextInt(border);
-				z *= GameManager.instance.rand.nextInt(border);
+				x *= GameManager.instance.rand.nextInt(start) + end;
+				z *= GameManager.instance.rand.nextInt(start) + end;
 				altarPoses.add(new ChunkPos(new BlockPos(x, 0, z)));
 			}
 		}

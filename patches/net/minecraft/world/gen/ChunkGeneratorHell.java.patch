@@ -1,0 +1,20 @@
+--- ../src-base/minecraft/net/minecraft/world/gen/ChunkGeneratorHell.java
++++ ../src-work/minecraft/net/minecraft/world/gen/ChunkGeneratorHell.java
+@@ -3,6 +3,7 @@
+ import java.util.List;
+ import java.util.Random;
+ import javax.annotation.Nullable;
++import cn.topologycraft.uhc.gen.WorldGenValuableOre;
+ import net.minecraft.block.BlockFalling;
+ import net.minecraft.block.material.Material;
+ import net.minecraft.block.state.IBlockState;
+@@ -50,7 +51,8 @@
+     private final WorldGenFire field_177470_t = new WorldGenFire();
+     private final WorldGenGlowStone1 field_177469_u = new WorldGenGlowStone1();
+     private final WorldGenGlowStone2 field_177468_v = new WorldGenGlowStone2();
+-    private final WorldGenerator field_177467_w = new WorldGenMinable(Blocks.field_150449_bY.func_176223_P(), 14, BlockMatcher.func_177642_a(Blocks.field_150424_aL));
++    // TC Plugin
++    private final WorldGenerator field_177467_w = new WorldGenValuableOre(Blocks.field_150449_bY.func_176223_P(), 14, BlockMatcher.func_177642_a(Blocks.field_150424_aL));
+     private final WorldGenerator field_189888_D = new WorldGenMinable(Blocks.field_189877_df.func_176223_P(), 33, BlockMatcher.func_177642_a(Blocks.field_150424_aL));
+     private final WorldGenHellLava field_177473_x = new WorldGenHellLava(Blocks.field_150356_k, true);
+     private final WorldGenHellLava field_177472_y = new WorldGenHellLava(Blocks.field_150356_k, false);

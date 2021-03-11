@@ -1,5 +1,6 @@
 package cn.topologycraft.uhc.gen;
 
+import com.google.common.base.Predicate;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -9,6 +10,10 @@ public class WorldGenValuableOre extends WorldGenMinable {
 
 	public WorldGenValuableOre(IBlockState state, int blockCount) {
 		super(state, blockCount);
+	}
+
+	public WorldGenValuableOre(IBlockState state, int blockCount, Predicate<IBlockState> predicate) {
+		super(state, blockCount, predicate);
 	}
 
 	@Override

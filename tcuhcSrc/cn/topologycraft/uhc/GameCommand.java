@@ -74,6 +74,11 @@ public class GameCommand extends CommandBase {
 					gameManager.addTask(new TaskOnce(Options.instance.taskReselectTeam));
 					break;
 				}
+				case "reset": {
+					if ("0".equals(args[1])) Options.instance.resetOptions(false);
+					if ("1".equals(args[1])) Options.instance.resetOptions(true);
+					break;
+				}
 				case "regen": {
 					assertSenderPermission(sender);
 					GameManager.regenerateTerrain();

@@ -9,13 +9,16 @@ public class Option extends Taskable {
 	private String optionName, optionDescript;
 	
 	private OptionType type;
-	private boolean saveToFile;
+	private Object defaultValue;
+	private boolean needToSave;
 	
 	public Option(String id, String name, OptionType type, Object defaultValue) {
 		optionId = id;
 		optionName = name;
 		this.type = type;
+		this.defaultValue = defaultValue;
 		type.setValue(defaultValue);
+		this.addTask(Options.instance.taskSaveProperties);
 	}
 	
 	public Object getValue() { return type.getValue(); }
@@ -47,14 +50,13 @@ public class Option extends Taskable {
 		optionDescript = des;
 		return this;
 	}
-	
+
 	public Option setNeedToSave() {
-		saveToFile = true;
-		this.addTask(Options.instance.taskSaveProperties);
+		this.needToSave = true;
 		return this;
 	}
-	
-	public boolean needToSave() { return saveToFile; }
-	public String getId() { return optionId; }
 
+	public boolean needToSave() { return needToSave; }
+	public String getId() { return optionId; }
+	public void reset() { setValue(defaultValue); }
 }

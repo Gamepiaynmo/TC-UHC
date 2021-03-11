@@ -39,6 +39,7 @@ public class PlayerItems {
 		items.put("Keviince", stack);
 		items.put("Dazo66", new ItemStack(Blocks.YELLOW_FLOWER));
 		items.put("Gamepiaynmo", new ItemStack(Items.COAL));
+		items.put("CCS_Covenant", new ItemStack(Items.COOKIE).setStackDisplayName("Crispy Crispy Shark!"));
 	}
 
 }
