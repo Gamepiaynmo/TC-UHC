@@ -236,9 +236,10 @@ public class PlayerManager {
 						@Override
 						public void onFindPlayer(EntityPlayerMP player) {
 							player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 300, 1));
-							player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 100, 1));
 							player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 300, 1));
 							player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 300, 1));
+							if (gameManager.getOptions().getOptionValue("gameMode") == EnumMode.NORMAL)
+								player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 100, 1));
 						}
 					});
 				}
