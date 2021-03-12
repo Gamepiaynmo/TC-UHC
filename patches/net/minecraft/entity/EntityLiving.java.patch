@@ -1,0 +1,41 @@
+--- ../src-base/minecraft/net/minecraft/entity/EntityLiving.java
++++ ../src-work/minecraft/net/minecraft/entity/EntityLiving.java
+@@ -688,6 +688,12 @@
+         return true;
+     }
+ 
++    // TC Plugin adds interface for invoking
++    public void invokeDespawnEntity()
++    {
++        this.func_70623_bb();
++    }
++
+     protected void func_70623_bb()
+     {
+         if (this.field_82179_bU)
+@@ -710,7 +716,9 @@
+                     this.func_70106_y();
+                 }
+ 
+-                if (this.field_70708_bq > 600 && this.field_70146_Z.nextInt(800) == 0 && d3 > 1024.0D && this.func_70692_ba())
++                // TC Plugin: make randomly despawn easier
++//                if (this.idleTime > 600 && this.rand.nextInt(800) == 0 && d3 > 1024.0D && this.canDespawn())
++                if (this.field_70708_bq > 300 && this.field_70146_Z.nextInt(200) == 0 && d3 > 1024.0D && this.func_70692_ba())
+                 {
+                     this.func_70106_y();
+                 }
+@@ -725,9 +733,11 @@
+     protected final void func_70626_be()
+     {
+         ++this.field_70708_bq;
+-        this.field_70170_p.field_72984_F.func_76320_a("checkDespawn");
+-        this.func_70623_bb();
+-        this.field_70170_p.field_72984_F.func_76319_b();
++        // TC Plugin
++        // moves the despawn logic into net.minecraft.world.World#updateEntityWithOptionalForce
++//        this.world.profiler.startSection("checkDespawn");
++//        this.despawnEntity();
++//        this.world.profiler.endSection();
+         this.field_70170_p.field_72984_F.func_76320_a("sensing");
+         this.field_70723_bA.func_75523_a();
+         this.field_70170_p.field_72984_F.func_76319_b();
