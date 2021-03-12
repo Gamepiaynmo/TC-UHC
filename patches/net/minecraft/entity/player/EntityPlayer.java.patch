@@ -9,7 +9,7 @@
  import java.nio.charset.StandardCharsets;
  import java.util.List;
  import java.util.UUID;
-@@ -1794,6 +1796,9 @@
+@@ -1791,6 +1793,9 @@
          {
              this.func_71029_a(entitylist$entityegginfo.field_151512_d);
          }

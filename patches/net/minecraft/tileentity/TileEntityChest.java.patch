@@ -9,7 +9,7 @@
  import net.minecraft.block.Block;
  import net.minecraft.block.BlockChest;
  import net.minecraft.entity.player.EntityPlayer;
-@@ -315,6 +317,11 @@
+@@ -316,6 +318,11 @@
  
      public void func_174889_b(EntityPlayer p_174889_1_)
      {
@@ -21,7 +21,7 @@
          if (!p_174889_1_.func_175149_v())
          {
              if (this.field_145987_o < 0)
-@@ -335,6 +342,11 @@
+@@ -336,6 +343,11 @@
  
      public void func_174886_c(EntityPlayer p_174886_1_)
      {
