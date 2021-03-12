@@ -93,8 +93,8 @@ public class BookNBT {
 				.appendSibling(createOptionText(options.getOption("chestItemFrequency")))
 				.appendSibling(createOptionText(options.getOption("mobCount")))
 				.appendSibling(createReturn())
-				.appendSibling(createTextEvent("      Reset Gameplay\n", "/uhc reset 0", "Reset Gameplay Settings", TextFormatting.GOLD))
-				.appendSibling(createTextEvent("     Reset Generation\n", "/uhc reset 1", "Reset Generation Settings", TextFormatting.GOLD))
+				.appendSibling(createTextEvent("     Reset Gameplay\n", "/uhc reset 0", "Reset Gameplay Settings", TextFormatting.GOLD))
+				.appendSibling(createTextEvent("    Reset Generation\n", "/uhc reset 1", "Reset Generation Settings", TextFormatting.GOLD))
 				.appendSibling(createTextEvent("       Regenerate\n", "/uhc regen", "Regenerate Terrain", TextFormatting.LIGHT_PURPLE))
 				.appendSibling(createTextEvent("          Start !\n", "/uhc start", "Start the UHC game !", TextFormatting.LIGHT_PURPLE))
 				);

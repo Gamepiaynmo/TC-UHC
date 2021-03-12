@@ -28,7 +28,7 @@ public class MapGenEnderAltar extends WorldGenerator {
 		if (altarPoses.isEmpty()) {
 			int start = Options.instance.getIntegerOptionValue("borderStart") / 2;
 			int end = Options.instance.getIntegerOptionValue("borderEnd") / 2;
-			start = (start - end) / 2;
+			start = Math.max(1, (start - end) / 2);
 
 			for (int i = 0; i < 4; i++) {
 				int x = i / 2 == 1 ? 1 : -1;

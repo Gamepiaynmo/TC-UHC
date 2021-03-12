@@ -136,7 +136,7 @@ public class GameManager extends Taskable {
 		TaskScoreboard.hideScoreboard();
 		if (!preloaded) {
 			int borderStart = uhcOptions.getIntegerOptionValue("borderStart");
-			borderStart = (borderStart + 80) / 32 + 1;
+			borderStart = borderStart / 32 + 5;
 			this.addTask(new TaskPregenerate(borderStart, mcServer.worlds[0]));
 			this.addTask(new TaskPregenerate(borderStart, mcServer.worlds[1]));
 			isPregenerating = true;

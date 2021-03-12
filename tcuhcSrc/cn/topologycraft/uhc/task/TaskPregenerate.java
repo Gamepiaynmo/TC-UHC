@@ -15,6 +15,7 @@ public class TaskPregenerate extends Task {
 	private boolean inited;
 	private WorldServer world;
 	private ChunkProviderServer provider;
+	static int lastRatio = 0;
 
 	public TaskPregenerate(int borderSize, WorldServer worldServer) {
 		size = borderSize;
@@ -56,7 +57,12 @@ public class TaskPregenerate extends Task {
 		if (x > size) {
 			x = -size + 1;
 			z++;
+			float ratio = (float) (z + size) * 100 / (2 * size + 1);
 			GameManager.LOG.info(String.format("%.2f%% chunks of %s loaded.", (float) (z + size) * 100 / (2 * size + 1), world.provider.getDimensionType().getName()));
+			if (ratio + 1e-4 > lastRatio) {
+				GameManager.instance.broadcastMessage(String.format("Chunk generate progress: %d%%", lastRatio));
+				lastRatio += 10;
+			}
 		}
 	}
 

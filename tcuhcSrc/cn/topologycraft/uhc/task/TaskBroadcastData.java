@@ -20,7 +20,7 @@ public class TaskBroadcastData extends TaskTimer {
 	private String getGraph(int len) {
 		StringBuilder res = new StringBuilder();
 		for (int i = 0; i < len; i++)
-			res.append("*");
+			res.append(i % 2 == 0 ? "[" : "]");
 		return res.toString();
 	}
 	
@@ -55,7 +55,7 @@ public class TaskBroadcastData extends TaskTimer {
 				gameManager.broadcastMessage(stat.name + ":");
 				for (Pair<String, Float> pair : stats) {
 					gameManager.broadcastMessage(String.format("  %-40s %7.2f %s",
-							pair.getLeft(), pair.getValue(), getGraph((int) (40 * pair.getValue() / max))));
+							getGraph((int) (40 * pair.getValue() / max)), pair.getValue(), pair.getLeft()));
 				}
 			}
 

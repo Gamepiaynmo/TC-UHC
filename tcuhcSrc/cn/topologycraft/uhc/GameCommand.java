@@ -77,6 +77,7 @@ public class GameCommand extends CommandBase {
 				case "reset": {
 					if ("0".equals(args[1])) Options.instance.resetOptions(false);
 					if ("1".equals(args[1])) Options.instance.resetOptions(true);
+					gameManager.getPlayerManager().refreshConfigBook();
 					break;
 				}
 				case "regen": {

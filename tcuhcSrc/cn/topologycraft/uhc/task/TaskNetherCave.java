@@ -29,7 +29,7 @@ public class TaskNetherCave extends TaskTimer {
 
 	private int finalX, finalZ, finalTime, finalMinY, finalMaxY;
 
-	public static final String[] lines = { "Border Min Y:", "Border Max Y:" };
+	public static final String[] lines = { "Border Min Y:", "Border Max Y:", "Border Center X:", "Border Center Z:" };
 
 	public TaskNetherCave() {
 		super(0, 20);
@@ -69,7 +69,7 @@ public class TaskNetherCave extends TaskTimer {
 		} else if (caveTime == 0) {
 			GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "Caves closed.");
 			WorldBorder border = GameManager.instance.getMinecraftServer().worlds[0].getWorldBorder();
-			int finalSize = (int) border.getDiameter() / 2;
+			int finalSize = Math.max((int) border.getDiameter() / 2, 1);
 			Random random = new Random();
 			while (finalX * finalX + finalZ * finalZ < finalSize * finalSize / 4) {
 				finalX = random.nextInt(finalSize * 2) - finalSize;
@@ -81,9 +81,10 @@ public class TaskNetherCave extends TaskTimer {
 
 			WorldServer world = GameManager.instance.getMinecraftServer().worlds[0];
 			List<Integer> heights = Lists.newArrayList();
-			int step = Math.max(1, borderFinal / 4);
-			for (int x = finalX - borderFinal; x <= finalX + borderFinal; x += step) {
-				for (int z = finalZ - borderFinal; z <= finalZ + borderFinal; z += step) {
+			int sampleSize = borderFinal / 2;
+			int step = Math.max(1, sampleSize / 4);
+			for (int x = finalX - sampleSize; x <= finalX + sampleSize; x += step) {
+				for (int z = finalZ - sampleSize; z <= finalZ + sampleSize; z += step) {
 					for (int y = 255; y > 0; y--) {
 						IBlockState state = world.getBlockState(new BlockPos(x, y, z));
 						if (state.getBlock() == Blocks.STONE && state.getValue(BlockStone.VARIANT) == BlockStone.EnumType.STONE) {
@@ -96,13 +97,8 @@ public class TaskNetherCave extends TaskTimer {
 
 			Collections.sort(heights);
 			int drop = heights.size() / 8;
-			heights = heights.subList(drop, heights.size() - drop);
-			int sum = 0;
-			for (int height : heights)
-				sum += height;
-			sum /= heights.size();
-			finalMinY = sum - 10;
-			finalMaxY = sum + 20;
+			finalMinY = heights.get(drop);
+			finalMaxY = heights.get(heights.size() - drop - 1) + 10;
 
 			GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "Final Minimum Y: " + finalMinY);
 			GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "Final Maximum Y: " + finalMaxY);
@@ -117,6 +113,8 @@ public class TaskNetherCave extends TaskTimer {
 			ScoreObjective objective = scoreboard.getObjective(TaskScoreboard.scoreName);
 			scoreboard.getOrCreateScore(lines[0], objective).setScorePoints((int) Math.ceil(minY));
 			scoreboard.getOrCreateScore(lines[1], objective).setScorePoints((int) Math.floor(maxY));
+			scoreboard.getOrCreateScore(lines[2], objective).setScorePoints(Math.round(partial * finalX));
+			scoreboard.getOrCreateScore(lines[3], objective).setScorePoints(Math.round(partial * finalZ));
 
 			for (GamePlayer player : combatPlayers) {
 				player.getRealPlayer().ifPresent(playermp -> {

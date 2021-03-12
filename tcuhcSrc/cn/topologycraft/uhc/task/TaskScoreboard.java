@@ -58,18 +58,23 @@ public class TaskScoreboard extends TaskTimer {
 		if (this.hasFinished() || !GameManager.instance.isGamePlaying()) this.setCanceled();
 		Score score = scoreboard.getOrCreateScore(lines[0], objective);
 		int timeRemaining = score.getScorePoints();
-//		if (timeRemaining > 0) {
-			score.setScorePoints(timeRemaining - 1);
-			if (timeRemaining == gameTime - startTime) {
-				GameManager.instance.addTask(new TaskBorderReminder());
-			}
-			scoreboard.getOrCreateScore(lines[1], objective).setScorePoints(getBorderPosition() / 2);
-			score = scoreboard.getOrCreateScore(lines[2], objective);
+		score.setScorePoints(timeRemaining - 1);
+		if (timeRemaining == gameTime - startTime) {
+			GameManager.instance.addTask(new TaskBorderReminder());
+		}
+		scoreboard.getOrCreateScore(lines[1], objective).setScorePoints(getBorderPosition() / 2);
+
+		score = scoreboard.getOrCreateScore(lines[2], objective);
+		if (score.getScorePoints() > 0)
 			score.setScorePoints(Math.max(0, score.getScorePoints() - 1));
-			score = scoreboard.getOrCreateScore(lines[3], objective);
+		else scoreboard.removeObjectiveFromEntity(lines[2], objective);
+
+		score = scoreboard.getOrCreateScore(lines[3], objective);
+		if (score.getScorePoints() > 0)
 			score.setScorePoints(Math.max(0, score.getScorePoints() - 1));
-			if (timeRemaining % 60 == 0) updateCompassRotation();
-//		} else this.setCanceled();
+		else scoreboard.removeObjectiveFromEntity(lines[3], objective);
+
+		if (timeRemaining % 60 == 0) updateCompassRotation();
 	}
 	
 	private void updateCompassRotation() {

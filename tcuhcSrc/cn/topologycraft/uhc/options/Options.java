@@ -70,14 +70,14 @@ public class Options {
 		addOption(new Option("borderEnd", "Border End", new OptionType.IntegerType(10, 2000000, 10), 200).setDescription("The end size of world border."));
 		addOption(new Option("borderFinal", "Border Final", new OptionType.IntegerType(10, 2000000, 10), 50).setDescription("The final size of world border."));
 
-		addOption(new Option("gameTime", "Game Time", new OptionType.IntegerType(0, 1000000, 100), 4000).setDescription("The total time of the game."));
-		addOption(new Option("borderStartTime", "Start Time", new OptionType.IntegerType(0, 1000000, 100), 1000).setDescription("The time that border starts to shrink."));
-		addOption(new Option("borderEndTime", "End Time", new OptionType.IntegerType(0, 1000000, 100), 3000).setDescription("The time that border stops shrinking."));
-		addOption(new Option("netherCloseTime", "Nether Time", new OptionType.IntegerType(0, 1000000, 100), 3000).setDescription("When does the nether and the end become forbidden."));
-		addOption(new Option("caveCloseTime", "Cave Time", new OptionType.IntegerType(0, 1000000, 100), 3700).setDescription("When does the caves become forbidden."));
-		addOption(new Option("greenhandTime", "GH Time", new OptionType.IntegerType(0, 1000000, 100), 3000).setDescription("Length of greenhand protection."));
+		addOption(new Option("gameTime", "Game Time", new OptionType.IntegerType(0, 1000000, 100), 5400).setDescription("The total time of the game."));
+		addOption(new Option("borderStartTime", "Start Time", new OptionType.IntegerType(0, 1000000, 100), 1800).setDescription("The time that border starts to shrink."));
+		addOption(new Option("borderEndTime", "End Time", new OptionType.IntegerType(0, 1000000, 100), 4800).setDescription("The time that border stops shrinking."));
+		addOption(new Option("netherCloseTime", "Nether Time", new OptionType.IntegerType(0, 1000000, 100), 4800).setDescription("When does the nether and the end become forbidden."));
+		addOption(new Option("caveCloseTime", "Cave Time", new OptionType.IntegerType(0, 1000000, 100), 5100).setDescription("When does the caves become forbidden."));
+		addOption(new Option("greenhandTime", "GH Time", new OptionType.IntegerType(0, 1000000, 100), 4800).setDescription("Length of greenhand protection."));
 
-		addOption(new Option("merchantFrequency", "Merchants", new OptionType.FloatType(0.0f, 1.0f, 0.05f), 1.0f).setNeedToSave().setDescription("Frequency that merchants appears."));
+		addOption(new Option("merchantFrequency", "Merchants", new OptionType.FloatType(0.0f, 10.0f, 0.05f), 1.0f).setNeedToSave().setDescription("Frequency that merchants appears."));
 		addOption(new Option("oreFrequency", "Ores", new OptionType.IntegerType(0, 100, 1), 4).setNeedToSave().setDescription("Frequency of variable ores include diamonds, lapis and gold."));
 		addOption(new Option("chestFrequency", "Bonus Chests", new OptionType.FloatType(0.0f, 10.0f, 0.1f), 1.0f).setNeedToSave().setDescription("Frequency of bonus chests."));
 		addOption(new Option("trappedChestFrequency", "Empty Chests", new OptionType.FloatType(0.0f, 1.0f, 0.05f), 0.2f).setNeedToSave().setDescription("Frequency of empty bonus chests."));
