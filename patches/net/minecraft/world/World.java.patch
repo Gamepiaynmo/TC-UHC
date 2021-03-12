@@ -1,0 +1,17 @@
+--- ../src-base/minecraft/net/minecraft/world/World.java
++++ ../src-work/minecraft/net/minecraft/world/World.java
+@@ -1409,6 +1409,14 @@
+                 entity2.func_184210_p();
+             }
+ 
++            // TC Plugin: immediately despawn check despite chunk loaded state check
++            if (entity2 instanceof EntityLiving)
++            {
++                this.field_72984_F.func_76320_a("checkDespawn");
++                ((EntityLiving)entity2).invokeDespawnEntity();
++                this.field_72984_F.func_76319_b();
++            }
++
+             this.field_72984_F.func_76320_a("tick");
+ 
+             if (!entity2.field_70128_L && !(entity2 instanceof EntityPlayerMP))
