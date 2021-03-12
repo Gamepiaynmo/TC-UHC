@@ -8,7 +8,7 @@
  import io.netty.util.concurrent.Future;
  import io.netty.util.concurrent.GenericFutureListener;
  import java.io.IOException;
-@@ -773,15 +774,36 @@
+@@ -772,15 +773,36 @@
  
              if (entity != null)
              {
@@ -47,7 +47,7 @@
                      WorldServer worldserver1 = this.field_147369_b.func_71121_q();
                      WorldServer worldserver2 = (WorldServer)entity.field_70170_p;
                      this.field_147369_b.field_71093_bK = entity.field_71093_bK;
-@@ -801,6 +823,12 @@
+@@ -800,6 +822,12 @@
                      this.field_147369_b.func_70029_a(worldserver2);
                      this.field_147367_d.func_184103_al().func_72375_a(this.field_147369_b, worldserver1);
                      this.field_147369_b.func_70634_a(entity.field_70165_t, entity.field_70163_u, entity.field_70161_v);
@@ -60,7 +60,7 @@
                      this.field_147369_b.field_71134_c.func_73080_a(worldserver2);
                      this.field_147367_d.func_184103_al().func_72354_b(this.field_147369_b, worldserver2);
                      this.field_147367_d.func_184103_al().func_72385_f(this.field_147369_b);
-@@ -922,7 +950,8 @@
+@@ -921,7 +949,8 @@
              {
                  this.func_147361_d(s);
              }
