@@ -6,7 +6,7 @@
      {
 -        return this == Blocks.field_150369_x ? 4 + p_149745_1_.nextInt(5) : 1;
 +        // TC Plugin:
-+        return this == Blocks.field_150369_x ? 2 : 1;
++        return this == Blocks.field_150369_x ? 4 : 1;
      }
  
      public int func_149679_a(int p_149679_1_, Random p_149679_2_)

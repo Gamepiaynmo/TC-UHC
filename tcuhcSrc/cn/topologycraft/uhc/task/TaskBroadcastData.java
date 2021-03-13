@@ -45,7 +45,7 @@ public class TaskBroadcastData extends TaskTimer {
 			stats.sort((A, B) -> B.getValue().compareTo(A.getValue()));
 			for (int i = 0; i < stats.size(); i++) {
 				Pair<GamePlayer, Float> pair = stats.get(i);
-				if (pair.getValue() == 0 || (i >= 6 && pair.getValue() < stats.get(i - 1).getValue())) {
+				if (pair.getValue() == 0 || (i >= 8 && pair.getValue() < stats.get(i - 1).getValue())) {
 					stats.subList(i, stats.size()).clear();
 					break;
 				}

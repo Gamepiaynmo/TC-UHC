@@ -91,14 +91,17 @@ public class TaskNetherCave extends TaskTimer {
 							heights.add(y);
 							break;
 						}
+						if (state.getBlock() == Blocks.WATER) {
+							heights.add(Math.max(1, y - 4));
+							break;
+						}
 					}
 				}
 			}
 
 			Collections.sort(heights);
-			int drop = heights.size() / 8;
-			finalMinY = heights.get(drop);
-			finalMaxY = heights.get(heights.size() - drop - 1) + 10;
+			finalMinY = heights.get(4);
+			finalMaxY = heights.get(heights.size() - 4) + 12;
 		} else if (caveTime < 0) {
 			caveTime = -caveTime;
 			boolean glow = caveTime % 60 == 0;
