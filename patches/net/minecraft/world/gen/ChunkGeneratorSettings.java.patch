@@ -5,7 +5,7 @@
                  this.field_177937_ab = 0;
                  this.field_177934_ac = 80;
 -                this.field_177935_ad = 17;
-+                this.field_177935_ad = 10;
++                this.field_177935_ad = 12;
                  this.field_177941_ae = 20;
                  this.field_177943_af = 0;
                  this.field_177938_ag = 128;
@@ -34,7 +34,7 @@
                  this.field_177914_av = 0;
                  this.field_177912_aw = 16;
 -                this.field_177910_ax = 7;
-+                this.field_177910_ax = 4;
++                this.field_177910_ax = 3;
                  this.field_177897_ay = 1;
 -                this.field_177895_az = 16;
 -                this.field_177889_aA = 16;

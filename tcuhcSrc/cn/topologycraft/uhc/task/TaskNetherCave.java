@@ -99,9 +99,6 @@ public class TaskNetherCave extends TaskTimer {
 			int drop = heights.size() / 8;
 			finalMinY = heights.get(drop);
 			finalMaxY = heights.get(heights.size() - drop - 1) + 10;
-
-			GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "Final Minimum Y: " + finalMinY);
-			GameManager.instance.broadcastMessage(TextFormatting.DARK_RED + "Final Maximum Y: " + finalMaxY);
 		} else if (caveTime < 0) {
 			caveTime = -caveTime;
 			boolean glow = caveTime % 60 == 0;

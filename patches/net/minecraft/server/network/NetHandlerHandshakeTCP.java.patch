@@ -4,15 +4,13 @@
  
      public void func_147383_a(C00Handshake p_147383_1_)
      {
--        switch (p_147383_1_.func_149594_c())
-+        EnumConnectionState state = p_147383_1_.func_149594_c();
++        // TC Plugin:
+         switch (p_147383_1_.func_149594_c())
          {
--            case LOGIN:
-+            if (state == EnumConnectionState.LOGIN) {
+             case LOGIN:
                  this.field_147386_b.func_150723_a(EnumConnectionState.LOGIN);
  
 -                if (p_147383_1_.func_149595_d() > 335)
-+                // TC Plugin:
 +                if (p_147383_1_.func_149595_d() > 334)
                  {
 -                    ITextComponent itextcomponent = new TextComponentTranslation("multiplayer.disconnect.outdated_server", new Object[] {"1.12"});
@@ -28,20 +26,3 @@
                      this.field_147386_b.func_179290_a(new SPacketDisconnect(itextcomponent1));
                      this.field_147386_b.func_150718_a(itextcomponent1);
                  }
-@@ -44,13 +45,12 @@
-                     this.field_147386_b.func_150719_a(new NetHandlerLoginServer(this.field_147387_a, this.field_147386_b));
-                 }
- 
--                break;
--            case STATUS:
-+            } else if (state == EnumConnectionState.STATUS) {
-                 this.field_147386_b.func_150723_a(EnumConnectionState.STATUS);
-                 this.field_147386_b.func_150719_a(new NetHandlerStatusServer(this.field_147387_a, this.field_147386_b));
--                break;
--            default:
-+            } else {
-                 throw new UnsupportedOperationException("Invalid intention " + p_147383_1_.func_149594_c());
-+            }
-         }
-     }
- 

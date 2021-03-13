@@ -35,16 +35,16 @@ public class TaskBroadcastData extends TaskTimer {
 		while (true) {
 			float max = 0;
 			EnumStat stat = EnumStat.values()[round];
-			List<Pair<String, Float>> stats = Lists.newArrayList();
+			List<Pair<GamePlayer, Float>> stats = Lists.newArrayList();
 			for (GamePlayer player : gameManager.getPlayerManager().getCombatPlayers()) {
 				float value = player.getStat().getFloatStat(stat);
 				max = Math.max(max, value);
-				stats.add(Pair.of(player.getTeam().getTeamColor().chatColor + player.getName(), value));
+				stats.add(Pair.of(player, value));
 			}
 
 			stats.sort((A, B) -> B.getValue().compareTo(A.getValue()));
 			for (int i = 0; i < stats.size(); i++) {
-				Pair<String, Float> pair = stats.get(i);
+				Pair<GamePlayer, Float> pair = stats.get(i);
 				if (pair.getValue() == 0 || (i >= 6 && pair.getValue() < stats.get(i - 1).getValue())) {
 					stats.subList(i, stats.size()).clear();
 					break;
@@ -53,9 +53,9 @@ public class TaskBroadcastData extends TaskTimer {
 
 			if (!stats.isEmpty()) {
 				gameManager.broadcastMessage(stat.name + ":");
-				for (Pair<String, Float> pair : stats) {
-					gameManager.broadcastMessage(String.format("  %-40s %7.2f %s",
-							getGraph((int) (40 * pair.getValue() / max)), pair.getValue(), pair.getLeft()));
+				for (Pair<GamePlayer, Float> pair : stats) {
+					gameManager.broadcastMessage(String.format("  %s%-40s %7.2f %s", pair.getLeft().getTeam().getTeamColor().chatColor,
+							getGraph((int) (40 * pair.getValue() / max)), pair.getValue(), pair.getLeft().getName()));
 				}
 			}
 
