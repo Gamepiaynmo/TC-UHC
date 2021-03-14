@@ -45,7 +45,7 @@ public class GameCommand extends CommandBase {
 	
 	private void sendVersionInfo(ICommandSender sender) {
 		sender.sendMessage(new TextComponentString(TextFormatting.GOLD + "== UHC Plugin for " + TextFormatting.RED + "T" + TextFormatting.BLUE + "opology" + TextFormatting.RED + "C" + TextFormatting.BLUE + "raft" + TextFormatting.GOLD + " =="));
-		sender.sendMessage(new TextComponentString("          " + TextFormatting.GREEN + "Plugin Version " + TextFormatting.GOLD + "1.4.5"));
+		sender.sendMessage(new TextComponentString("          " + TextFormatting.GREEN + "Plugin Version " + TextFormatting.GOLD + "1.4.6"));
 		sender.sendMessage(new TextComponentString("     " + TextFormatting.GREEN + "Minecraft Version " + TextFormatting.GOLD + "1.12-pre7"));
 	}
 	

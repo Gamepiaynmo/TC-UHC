@@ -83,8 +83,10 @@ public class MapGenMerchants extends WorldGenerator {
 		randRecipeList.add(new UHCRecipe(Items.COAL, 3, 6, 1, 1, false));
 		randRecipeList.add(new UHCRecipe(Items.REDSTONE, 3, 6, 1, 1, false));
 		randRecipeList.add(new UHCRecipe(Items.IRON_INGOT, 1, 2, 1, 1, false));
+		randRecipeList.add(new UHCRecipe(Items.GOLD_INGOT, 1, 1, 1, 2, false));
 		randRecipeList.add(new UHCRecipe(Items.ENDER_PEARL, 1, 1, 10, 20, false));
 		randRecipeList.add(new UHCRecipe(Items.EMERALD, 1, 1, 10, 20, false));
+		randRecipeList.add(new UHCRecipe(Items.DIAMOND, 1, 1, 2, 4, false));
 		merchantChance = GameManager.instance.getOptions().getFloatOptionValue("merchantFrequency");
 	}
 

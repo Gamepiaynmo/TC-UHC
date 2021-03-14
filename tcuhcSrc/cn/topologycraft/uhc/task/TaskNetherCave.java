@@ -16,8 +16,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.border.WorldBorder;
+import net.minecraft.world.storage.WorldInfo;
 
 import java.util.Collections;
 import java.util.List;
@@ -102,6 +104,17 @@ public class TaskNetherCave extends TaskTimer {
 			Collections.sort(heights);
 			finalMinY = heights.get(4);
 			finalMaxY = heights.get(heights.size() - 4) + 12;
+
+			WorldInfo worldinfo = world.getWorldInfo();
+			worldinfo.setCleanWeatherTime(gameTime * 20);
+			worldinfo.setRainTime(0);
+			worldinfo.setThunderTime(0);
+			worldinfo.setRaining(false);
+			worldinfo.setThundering(false);
+
+			GameRules gameRules = world.getGameRules();
+			gameRules.setOrCreateGameRule("daylightCycle", "false");
+			world.setWorldTime(1000);
 		} else if (caveTime < 0) {
 			caveTime = -caveTime;
 			boolean glow = caveTime % 60 == 0;

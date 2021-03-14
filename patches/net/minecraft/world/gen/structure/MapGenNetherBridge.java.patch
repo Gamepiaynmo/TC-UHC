@@ -1,0 +1,27 @@
+--- ../src-base/minecraft/net/minecraft/world/gen/structure/MapGenNetherBridge.java
++++ ../src-work/minecraft/net/minecraft/world/gen/structure/MapGenNetherBridge.java
+@@ -37,23 +37,7 @@
+ 
+     protected boolean func_75047_a(int p_75047_1_, int p_75047_2_)
+     {
+-        int i = p_75047_1_ >> 4;
+-        int j = p_75047_2_ >> 4;
+-        this.field_75038_b.setSeed((long)(i ^ j << 4) ^ this.field_75039_c.func_72905_C());
+-        this.field_75038_b.nextInt();
+-
+-        if (this.field_75038_b.nextInt(3) != 0)
+-        {
+-            return false;
+-        }
+-        else if (p_75047_1_ != (i << 4) + 4 + this.field_75038_b.nextInt(8))
+-        {
+-            return false;
+-        }
+-        else
+-        {
+-            return p_75047_2_ == (j << 4) + 4 + this.field_75038_b.nextInt(8);
+-        }
++        return p_75047_1_ == 0 && p_75047_2_ == 0;
+     }
+ 
+     protected StructureStart func_75049_b(int p_75049_1_, int p_75049_2_)

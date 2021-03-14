@@ -25,7 +25,7 @@
 +                // TC Plugin: variable potion effect
 +                int level = p_77849_1_.func_77978_p() != null && p_77849_1_.func_77978_p().func_74764_b("level") ?
 +                        p_77849_1_.func_77978_p().func_74762_e("level") : 4;
-+                p_77849_3_.func_70690_d(new PotionEffect(MobEffects.field_76428_l, (level + 1) * 20, 1));
++                p_77849_3_.func_70690_d(new PotionEffect(MobEffects.field_76428_l, level * 25, 1));
 +                p_77849_3_.func_70690_d(new PotionEffect(MobEffects.field_76444_x, 2400, level - 1));
              }
          }

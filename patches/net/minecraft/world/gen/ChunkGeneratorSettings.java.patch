@@ -34,7 +34,7 @@
                  this.field_177914_av = 0;
                  this.field_177912_aw = 16;
 -                this.field_177910_ax = 7;
-+                this.field_177910_ax = 3;
++                this.field_177910_ax = 4;
                  this.field_177897_ay = 1;
 -                this.field_177895_az = 16;
 -                this.field_177889_aA = 16;

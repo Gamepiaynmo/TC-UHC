@@ -234,12 +234,18 @@ public class PlayerManager {
 				if (player.isAlive()) {
 					gameManager.addTask(new TaskFindPlayer(player) {
 						@Override
-						public void onFindPlayer(EntityPlayerMP player) {
-							player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 300, 1));
-							player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 300, 1));
-							player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 300, 1));
-							if (gameManager.getOptions().getOptionValue("gameMode") == EnumMode.NORMAL)
-								player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 100, 1));
+						public void onFindPlayer(EntityPlayerMP playermp) {
+							playermp.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 300, 1));
+							playermp.addPotionEffect(new PotionEffect(MobEffects.SPEED, 300, 1));
+							playermp.addPotionEffect(new PotionEffect(MobEffects.HASTE, 300, 1));
+							if (gameManager.getOptions().getOptionValue("gameMode") == EnumMode.NORMAL) {
+								float playerCnt = player.getTeam().getPlayerCount();
+								if (playerCnt > 1 && playersPerTeam > 1) {
+									float regen = 4 * playersPerTeam * (playersPerTeam - 1) / playerCnt / (playerCnt - 1);
+									playermp.heal((float) (regen - Math.floor(regen)));
+									playermp.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 25 * (int) Math.floor(regen), 1));
+								}
+							}
 						}
 					});
 				}
