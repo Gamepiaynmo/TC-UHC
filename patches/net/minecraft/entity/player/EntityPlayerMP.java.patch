@@ -19,13 +19,14 @@
          }
  
          for (ScoreObjective scoreobjective : this.field_70170_p.func_96441_U().func_96520_a(IScoreCriteria.field_96642_c))
-@@ -523,11 +526,21 @@
+@@ -523,11 +526,22 @@
              entitylivingbase.func_191956_a(this, this.field_70744_aE, p_70645_1_);
          }
  
 +        // TC Plugin
 +        Entity sourceEntity = p_70645_1_.func_76364_f();
 +        if (sourceEntity == null || !(sourceEntity instanceof EntityPlayerMP)) sourceEntity = p_70645_1_.func_76346_g();
++        if (sourceEntity == null || !(sourceEntity instanceof EntityPlayerMP)) sourceEntity = this.func_94060_bK();
 +        if (sourceEntity != null && sourceEntity instanceof EntityPlayerMP) {
 +            GameManager.instance.getPlayerManager().getGamePlayer((EntityPlayerMP) sourceEntity).getStat().addStat(EnumStat.PLAYER_KILLED, 1);
 +        }
@@ -41,7 +42,7 @@
      }
  
      public void func_191956_a(Entity p_191956_1_, int p_191956_2_, DamageSource p_191956_3_)
-@@ -629,7 +642,23 @@
+@@ -629,7 +643,23 @@
                      }
                  }
  
@@ -66,7 +67,7 @@
              }
          }
      }
-@@ -1359,18 +1388,28 @@
+@@ -1359,18 +1389,28 @@
          return (Entity)(this.field_175401_bS == null ? this : this.field_175401_bS);
      }
  
@@ -102,7 +103,7 @@
      protected void func_184173_H()
      {
          if (this.field_71088_bW > 0 && !this.field_184851_cj)
-@@ -1439,4 +1478,12 @@
+@@ -1439,4 +1479,12 @@
      {
          return this.field_193110_cw;
      }
