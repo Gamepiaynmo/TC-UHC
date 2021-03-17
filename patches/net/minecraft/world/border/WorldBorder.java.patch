@@ -1,0 +1,15 @@
+--- ../src-base/minecraft/net/minecraft/world/border/WorldBorder.java
++++ ../src-work/minecraft/net/minecraft/world/border/WorldBorder.java
+@@ -47,6 +47,12 @@
+         return p_177743_1_.field_72336_d > this.func_177726_b() && p_177743_1_.field_72340_a < this.func_177728_d() && p_177743_1_.field_72334_f > this.func_177736_c() && p_177743_1_.field_72339_c < this.func_177733_e();
+     }
+ 
++    // TC Plugin: Added interface for chorus fruit teleportation check
++    public boolean contains(double x, double z)
++    {
++        return x > this.func_177726_b() && x < this.func_177728_d() && z > this.func_177736_c() && z < this.func_177733_e();
++    }
++
+     public double func_177745_a(Entity p_177745_1_)
+     {
+         return this.func_177729_b(p_177745_1_.field_70165_t, p_177745_1_.field_70161_v);

@@ -1,0 +1,16 @@
+--- ../src-base/minecraft/net/minecraft/item/ItemChorusFruit.java
++++ ../src-work/minecraft/net/minecraft/item/ItemChorusFruit.java
+@@ -35,6 +35,13 @@
+                     p_77654_3_.func_184210_p();
+                 }
+ 
++                // TC Plugin: world border check for chorus fruit
++                // If the destination is not inside the world border, skip this attempt
++                if (!p_77654_2_.func_175723_af().contains(d3, d5))
++                {
++                    continue;
++                }
++
+                 if (p_77654_3_.func_184595_k(d3, d4, d5))
+                 {
+                     p_77654_2_.func_184148_a((EntityPlayer)null, d0, d1, d2, SoundEvents.field_187544_ad, SoundCategory.PLAYERS, 1.0F, 1.0F);
