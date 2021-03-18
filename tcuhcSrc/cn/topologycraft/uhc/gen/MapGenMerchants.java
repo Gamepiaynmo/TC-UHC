@@ -80,6 +80,7 @@ public class MapGenMerchants extends WorldGenerator {
 		staticRecipeList.add(new UHCRecipe(Items.DIAMOND_BOOTS, Items.IRON_BOOTS, 1, 1, 18, 24, true));
 		randRecipeList = Lists.newArrayList();
 		randRecipeList.add(new UHCRecipe(Items.EXPERIENCE_BOTTLE, 2, 4, 1, 1, true));
+		randRecipeList.add(new UHCRecipe(Items.NETHER_WART, Items.BLAZE_POWDER, 1, 2, 2, 4, true));
 		randRecipeList.add(new UHCRecipe(Items.COAL, 3, 6, 1, 1, false));
 		randRecipeList.add(new UHCRecipe(Items.REDSTONE, 3, 6, 1, 1, false));
 		randRecipeList.add(new UHCRecipe(Items.IRON_INGOT, 1, 2, 1, 1, false));
