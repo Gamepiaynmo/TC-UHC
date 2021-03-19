@@ -129,6 +129,7 @@ public class GameManager extends Taskable {
 	
 	public void onServerInited() {
 		SpawnPlatform.generatePlatform(this, mcServer.worlds[0]);
+		this.addTask(new TaskHUDInfo(mcServer));
 	}
 	
 	public void postInit() {
