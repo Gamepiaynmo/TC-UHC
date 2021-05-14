@@ -4,6 +4,8 @@ import cn.topologycraft.uhc.GameManager;
 import cn.topologycraft.uhc.task.Task.TaskTimer;
 import cn.topologycraft.uhc.util.TitleUtil;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.GameType;
 
@@ -31,6 +33,7 @@ public class TaskTitleCountDown extends TaskTimer {
 				player.setGameType(GameType.SURVIVAL);
 				player.setEntityInvulnerable(false);
 				GameManager.instance.getPlayerManager().resetHealthAndFood(player);
+				player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 200, 4));  // 10s Resistance V
 			}
 		}));
 		GameManager.instance.addTask(new TaskScoreboard());
