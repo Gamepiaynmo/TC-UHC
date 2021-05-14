@@ -71,7 +71,7 @@ public class GameCommand extends CommandBase {
 					assertSenderPermission(sender);
 					gameManager.startConfiguration(assertConsoleSender(sender));
 					gameManager.getOptions().savePropertiesFile();
-					gameManager.addTask(new TaskOnce(Options.instance.taskReselectTeam));
+					if (!GameManager.instance.isGamePlaying()) gameManager.addTask(new TaskOnce(Options.instance.taskReselectTeam));
 					break;
 				}
 				case "reset": {
