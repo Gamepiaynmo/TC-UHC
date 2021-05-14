@@ -9,7 +9,15 @@
  import javax.annotation.Nullable;
  import net.minecraft.advancements.CriteriaTriggers;
  import net.minecraft.block.Block;
-@@ -345,6 +347,11 @@
+@@ -24,6 +26,7 @@
+ import net.minecraft.nbt.NBTBase;
+ import net.minecraft.nbt.NBTTagCompound;
+ import net.minecraft.nbt.NBTTagList;
++import net.minecraft.nbt.NBTTagString;
+ import net.minecraft.stats.StatList;
+ import net.minecraft.util.ActionResult;
+ import net.minecraft.util.EnumActionResult;
+@@ -345,6 +348,11 @@
          if (flag)
          {
              p_179548_4_.func_71029_a(StatList.func_188057_b(this.field_151002_e));
@@ -21,3 +29,18 @@
          }
      }
  
+@@ -716,6 +724,14 @@
+         this.field_77990_d.func_74768_a("RepairCost", p_82841_1_);
+     }
+ 
++    // TC Plugin: added method
++    public void setSingleLore(String lore)
++    {
++        NBTTagList loreList = new NBTTagList();
++        loreList.func_74742_a(new NBTTagString(lore));
++        this.func_190925_c("display").func_74782_a("Lore", loreList);
++    }
++
+     public Multimap<String, AttributeModifier> func_111283_C(EntityEquipmentSlot p_111283_1_)
+     {
+         Multimap<String, AttributeModifier> multimap;
