@@ -2,6 +2,7 @@ package cn.topologycraft.uhc;
 
 import cn.topologycraft.uhc.options.Options;
 import cn.topologycraft.uhc.task.TaskOnce;
+import cn.topologycraft.uhc.util.PlayerItems;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -143,6 +144,13 @@ public class GameCommand extends CommandBase {
 					} else {
 						sender.sendMessage(new TextComponentString(String.format("[%d, %d, %d]", pos.getX(), pos.getY(), pos.getZ())));
 					}
+					break;
+				}
+				case "givemorals": {
+					assertSenderPermission(sender);
+					EntityPlayerMP player = assertConsoleSender(sender);
+					PlayerItems.dumpMoralsToPlayer(player);
+					break;
 				}
 				default:
 					throw new CommandException(TextFormatting.RED + "Unknown command %s.", args[0]);
