@@ -74,6 +74,7 @@ public class GameManager extends Taskable {
 	public boolean isGamePlaying() { return isGamePlaying; }
 	public boolean isConfiguring() { return configManager.isConfiguring(); }
 	public boolean hasGameEnded() { return isGameEnded; }
+	public static EnumMode getGameMode() { return (EnumMode)instance.getOptions().getOptionValue("gameMode"); }
 	
 	public void onPlayerJoin(EntityPlayerMP player) {
 		try {
@@ -192,10 +193,12 @@ public class GameManager extends Taskable {
 		}
 		boolean autoTeams = uhcOptions.getBooleanOptionValue("randomTeams");
 		if (!playerManager.formTeams(autoTeams)) return;
-		if ((EnumMode) uhcOptions.getOptionValue("gameMode") == EnumMode.BOSS) {
-			bossInfo = Optional.of(new BossInfoServer(new TextComponentString(playerManager.getBossPlayer().getName()), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS));
-			playerList.getPlayers().forEach(player -> bossInfo.ifPresent(info -> info.addPlayer(player)));
-			bossInfo.ifPresent(info -> info.setVisible(true));
+		switch (getGameMode()) {
+			case BOSS:
+				bossInfo = Optional.of(new BossInfoServer(new TextComponentString(playerManager.getBossPlayer().getName()), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS));
+				playerList.getPlayers().forEach(player -> bossInfo.ifPresent(info -> info.addPlayer(player)));
+				bossInfo.ifPresent(info -> info.setVisible(true));
+				break;
 		}
 		isGamePlaying = true;
 		this.initWorlds();
@@ -349,9 +352,23 @@ public class GameManager extends Taskable {
 	}
 	
 	public static enum EnumMode {
-		NORMAL,
-		SOLO,
-		BOSS;
+		NORMAL(true),
+		SOLO(false),
+		BOSS(false),
+		GHOST(false),
+		KING(true);
+
+		private final boolean deathRegen;
+
+		EnumMode(boolean deathRegen)
+		{
+			this.deathRegen = deathRegen;
+		}
+
+		public boolean doDeathRegen()
+		{
+			return deathRegen;
+		}
 	}
 
 }

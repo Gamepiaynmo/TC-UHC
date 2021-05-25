@@ -11,7 +11,11 @@ public class TaskFindPlayer extends Task {
 	public TaskFindPlayer(GamePlayer player) {
 		this.player = player;
 	}
-	
+
+	public GamePlayer getGamePlayer() {
+		return player;
+	}
+
 	public void onFindPlayer(EntityPlayerMP player) { }
 	
 	@Override

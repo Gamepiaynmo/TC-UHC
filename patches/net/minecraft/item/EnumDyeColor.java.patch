@@ -1,0 +1,15 @@
+--- ../src-base/minecraft/net/minecraft/item/EnumDyeColor.java
++++ ../src-work/minecraft/net/minecraft/item/EnumDyeColor.java
+@@ -66,6 +66,12 @@
+         return this.field_193352_x;
+     }
+ 
++    // TC Plugin: added getter
++    public int func_193350_e()
++    {
++        return field_193351_w;
++    }
++
+     public static EnumDyeColor func_176766_a(int p_176766_0_)
+     {
+         if (p_176766_0_ < 0 || p_176766_0_ >= field_176789_r.length)

@@ -5,6 +5,8 @@ import cn.topologycraft.uhc.task.Taskable;
 import com.google.common.collect.Maps;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 
 import java.lang.ref.WeakReference;
@@ -50,6 +52,10 @@ public class GamePlayer extends Taskable {
 	public boolean isSamePlayer(EntityPlayer player) {
 		return player != null && playerUUID.equals(player.getUniqueID());
 	}
+
+	public boolean isKing() {
+		return this.getTeam() != null && this.getTeam().getKing() == this;
+	}
 	
 	public void setDead(int curTime) {
 		if (isAlive) {
@@ -75,7 +81,12 @@ public class GamePlayer extends Taskable {
 	public Optional<EntityPlayerMP> getRealPlayer() {
 		return playerManager.getPlayerByUUID(playerUUID);
 	}
-	
+
+	public void addGhostModeEffect()
+	{
+		this.getRealPlayer().ifPresent(player -> player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, Integer.MAX_VALUE, 0, true, false)));
+	}
+
 	public static enum EnumStat {
 		PLAYER_KILLED("Player Killed"),
 		ENTITY_KILLED("Entity Killed"),

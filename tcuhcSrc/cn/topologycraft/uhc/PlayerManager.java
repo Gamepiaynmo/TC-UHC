@@ -2,12 +2,15 @@ package cn.topologycraft.uhc;
 
 import cn.topologycraft.uhc.GameManager.EnumMode;
 import cn.topologycraft.uhc.GamePlayer.EnumStat;
+import cn.topologycraft.uhc.task.Task;
 import cn.topologycraft.uhc.task.TaskFindPlayer;
 import cn.topologycraft.uhc.task.TaskKeepSpectate;
+import cn.topologycraft.uhc.task.TaskOnce;
 import cn.topologycraft.uhc.util.*;
 import com.google.common.collect.Lists;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -221,6 +224,19 @@ public class PlayerManager {
 				} else {
 					this.deadPotionEffects(gamePlayer.getTeam());
 				}
+
+				if (GameManager.getGameMode() == EnumMode.KING && gamePlayer.isKing()) {
+					gamePlayer.getTeam().getPlayers().forEach(teamMate -> {
+						if (teamMate.isAlive()) {
+							gameManager.addTask(new TaskOnce(new Task(){
+								@Override
+								public void onUpdate() {
+									teamMate.getRealPlayer().ifPresent(EntityLivingBase::onKillCommand);
+								}
+							}));
+						}
+					});
+				}
 			}
 		}
 		EntityItem entityitem = new EntityItem(player.world, player.posX, player.posY, player.posZ, PlayerItems.getPlayerItem(player.getName()));
@@ -238,7 +254,7 @@ public class PlayerManager {
 							playermp.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 300, 1));
 							playermp.addPotionEffect(new PotionEffect(MobEffects.SPEED, 300, 1));
 							playermp.addPotionEffect(new PotionEffect(MobEffects.HASTE, 300, 1));
-							if (gameManager.getOptions().getOptionValue("gameMode") == EnumMode.NORMAL) {
+							if (GameManager.getGameMode().doDeathRegen()) {
 								float playerCnt = player.getTeam().getPlayerCount();
 								if (playerCnt > 1 && playersPerTeam > 1) {
 									float regen = 4 * playersPerTeam * (playersPerTeam - 1) / playerCnt / (playerCnt - 1);
@@ -325,6 +341,8 @@ public class PlayerManager {
 			player.isAlive = true;
 			player.getStat().setStat(EnumStat.ALIVE_TIME, 0);
 			player.getRealPlayer().ifPresent(playermp -> playermp.setGameType(GameType.SURVIVAL));
+			if (GameManager.getGameMode() == EnumMode.GHOST)
+				player.addGhostModeEffect();
 			gameManager.broadcastMessage(player.getTeam().getTeamColor().chatColor + player.getName() + TextFormatting.WHITE + " got +1s.");
 		});
 	}
@@ -355,8 +373,9 @@ public class PlayerManager {
 		}
 		
 		teams.clear();
-		switch ((EnumMode) gameManager.getOptions().getOptionValue("gameMode")) {
-			case NORMAL: {
+		switch (GameManager.getGameMode()) {
+			case NORMAL:
+			case KING: {
 				int playerCount = combatPlayerList.size();
 				int teamCount = gameManager.getOptions().getIntegerOptionValue("teamCount");
 				playersPerTeam = playerCount / teamCount + (playerCount % teamCount == 0 ? 0 : 1);
@@ -377,7 +396,8 @@ public class PlayerManager {
 				}
 				break;
 			}
-			case SOLO: {
+			case SOLO:
+			case GHOST: {
 				combatPlayerList.stream().map(player -> new GameTeam().setPlayerTeam(player)).forEach(teams::add);
 				playersPerTeam = 1;
 				break;
@@ -416,8 +436,9 @@ public class PlayerManager {
 		}
 		
 		teams.clear();
-		switch ((EnumMode) gameManager.getOptions().getOptionValue("gameMode")) {
-			case NORMAL: {
+		switch (GameManager.getGameMode()) {
+			case NORMAL:
+			case KING: {
 				int playerCount = combatPlayerList.size();
 				int teamCount = gameManager.getOptions().getIntegerOptionValue("teamCount");
 				for (int i = 0; i < teamCount; i++) {
@@ -461,7 +482,8 @@ public class PlayerManager {
 				playersPerTeam = teams.stream().mapToInt(team -> team.getPlayerCount()).max().orElse(0);
 				break;
 			}
-			case SOLO: {
+			case SOLO:
+			case GHOST: {
 				combatPlayerList.stream().map(player -> new GameTeam().setPlayerTeam(player)).forEach(teams::add);
 				playersPerTeam = 1;
 				break;
@@ -495,7 +517,7 @@ public class PlayerManager {
 	}
 	
 	protected GamePlayer getBossPlayer() {
-		if ((EnumMode) gameManager.getOptions().getOptionValue("gameMode") == EnumMode.BOSS) {
+		if (GameManager.getGameMode() == EnumMode.BOSS) {
 			return teams.get(0).getPlayers().iterator().next();
 		}
 		return null;
@@ -516,7 +538,9 @@ public class PlayerManager {
 			gameManager.broadcastMessage(team.getColorfulTeamName() + " Members:");
 			for (GamePlayer player : team.getPlayers()) {
 				scoreboard.addPlayerToTeam(player.getName(), team.getTeamName());
-				gameManager.broadcastMessage("    " + team.getTeamColor().chatColor + player.getName());
+				String message = "    " + team.getTeamColor().chatColor + player.getName();
+				if (player.isKing()) message += " [KING]";
+				gameManager.broadcastMessage(message);
 			}
 		}
 	}
@@ -554,8 +578,9 @@ public class PlayerManager {
 		
 		World world = gameManager.getMinecraftServer().worlds[0];
 		int borderStart = gameManager.getOptions().getIntegerOptionValue("borderStart");
-		switch ((EnumMode) gameManager.getOptions().getOptionValue("gameMode")) {
-			case NORMAL: {
+		switch (GameManager.getGameMode()) {
+			case NORMAL:
+			case KING: {
 				SpawnPosition spawnPosition = new SpawnPosition(teams.size(), borderStart);
 				for (GameTeam team : teams) {
 					final BlockPos pos = gameManager.buildSmallHouse(spawnPosition.nextPos(), team.getTeamColor().dyeColor);
@@ -566,6 +591,7 @@ public class PlayerManager {
 				break;
 			}
 			case SOLO:
+			case GHOST:
 			case BOSS: {
 				SpawnPosition spawnPosition = new SpawnPosition(combatPlayerList.size(), borderStart);
 				double maxHealth = 20.0 * playersPerTeam;
