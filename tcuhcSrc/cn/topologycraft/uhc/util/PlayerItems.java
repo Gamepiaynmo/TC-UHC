@@ -47,7 +47,7 @@ public class PlayerItems {
 		items.put("Gamepiaynmo", new ItemStack(Items.COAL));
 		items.put("CCS_Covenant", new ItemStack(Items.COOKIE).setStackDisplayName("Crispy Crispy Shark!"));
 		items.put("Lancet_Corgi", Builder.create(Items.IRON_SWORD, 250).enchant(Enchantments.SHARPNESS, 5).expensive().get());
-		items.put("ajisai_iii", new ItemStack(Items.CHICKEN));
+		items.put("ajisai_iii", Builder.create(Items.CHICKEN).named("rua aji").get());  // rua!
 		items.put("Aschin", Builder.create(Items.WHEAT).named("comymy").get());
 		items.put("Dou_Bi_Long", Builder.create(Blocks.DRAGON_EGG).named("longbao no egg").enchant(Enchantments.UNBREAKING, 10).enchant(Enchantments.MENDING, 1).get());
 		items.put("minamotosan", Builder.create(Items.ROTTEN_FLESH).named("spicy strip").get());
@@ -58,7 +58,10 @@ public class PlayerItems {
 		items.put("Fallen_Breath", Builder.create(Items.LEATHER_CHESTPLATE).mani(s -> Items.LEATHER_CHESTPLATE.setColor(s, 16742436)).named("fox fur coat").get());
 		items.put("Sanluli36li", Builder.create(Items.TNT_MINECART).named("36li's self-destruct-car").enchant(Enchantments.FORTUNE, 3).get());
 		items.put("shamreltuim", Builder.create(Items.FISH, 3).get());  // puffer fish
-		items.put("YtonE", Builder.create(Items.POTIONITEM).potion(PotionTypes.EMPTY).get());  // uncraftable potion
+		items.put("YtonE", Builder.create(Items.POTIONITEM).potion(PotionTypes.EMPTY).named("liquid ketone").get());  // uncraftable potion
+		items.put("Van_Nya", Builder.create(Items.RABBIT_STEW).named("Van Nya Stew").get());  // Nya? Nya!
+		items.put("Azulene0907", Builder.create(Items.SPLASH_POTION).potion(PotionTypes.EMPTY).named("ArBQ").get());  // uncraftable potion
+		items.put("U_ruby", Builder.create(Items.FEATHER).named("double u").get());
 	}
 
 	private static class Builder
