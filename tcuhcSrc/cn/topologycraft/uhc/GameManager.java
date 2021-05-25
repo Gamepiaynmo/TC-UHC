@@ -308,7 +308,7 @@ public class GameManager extends Taskable {
 	public void startConfiguration(EntityPlayerMP operator) {
 		configManager.startConfiguring(playerManager.getGamePlayer(operator));
 		operator.inventory.addItemStackToInventory(BookNBT.getConfigBook(this));
-		SpawnPlatform.generateSafePlatform(mcServer.worlds[0]);
+		if (!GameManager.instance.isGamePlaying()) SpawnPlatform.generateSafePlatform(mcServer.worlds[0]);
 	}
 	
 	public void broadcastMessage(String msg) {
