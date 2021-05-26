@@ -149,7 +149,11 @@ public class GameCommand extends CommandBase {
 				case "givemorals": {
 					assertSenderPermission(sender);
 					EntityPlayerMP player = assertConsoleSender(sender);
-					PlayerItems.dumpMoralsToPlayer(player);
+					if (args.length == 1) {
+						PlayerItems.dumpMoralsToPlayer(player, null);
+					} else if (args.length == 2) {
+						PlayerItems.dumpMoralsToPlayer(player, args[1]);
+					}
 					break;
 				}
 				default:
