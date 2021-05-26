@@ -9,21 +9,22 @@ public class TaskKingEffectField extends Task.TaskTimer
 {
 	public TaskKingEffectField()
 	{
-		super(0, 20);
+		super(0, 10);
 	}
 
-	// give 2 seconds resistance I to any player near its king
+	// give 2 seconds speed I to any player near its king
 	@Override
 	public void onTimer()
 	{
 		if (GameManager.instance.isGamePlaying() && GameManager.getGameMode() == GameManager.EnumMode.KING) {
 			GameManager.instance.getPlayerManager().getCombatPlayers().forEach(gamePlayer -> {
+				// only non-king players are able to have the boost
 				if (!gamePlayer.isKing() && gamePlayer.isAlive() && gamePlayer.getRealPlayer().isPresent()) {
 					GamePlayer king = gamePlayer.getTeam().getKing();
 					if (king.isAlive() && king.getRealPlayer().isPresent()) {
 						double distanceToKing = gamePlayer.getRealPlayer().get().getDistance(king.getRealPlayer().get());
-						if (distanceToKing <= 8) {
-							gamePlayer.getRealPlayer().get().addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 0, 40));
+						if (distanceToKing <= 5) {
+							gamePlayer.getRealPlayer().get().addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 40));
 						}
 					}
 				}
