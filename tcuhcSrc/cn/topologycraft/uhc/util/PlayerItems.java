@@ -32,11 +32,16 @@ public class PlayerItems {
 		return stack;
 	}
 
-	// for command /uhc givemorals
-	public static void dumpMoralsToPlayer(EntityPlayer player) {
-		items.keySet().forEach(name -> player.inventory.addItemStackToInventory(getPlayerItem(name)));
+	// for command /uhc givemorals [<targetName>]
+	public static void dumpMoralsToPlayer(EntityPlayer player, String targetName) {
+		if (targetName == null) {
+			items.keySet().forEach(name -> player.inventory.addItemStackToInventory(getPlayerItem(name)));
+		}
+		else {
+			player.inventory.addItemStackToInventory(getPlayerItem(targetName));
+		}
 	}
-	
+
 	static {
 		items.put("hungryartist_", Builder.create(Items.POTIONITEM).potion(PotionTypes.STRONG_POISON).named("hungryartist_'s holy water").get());
 		items.put("_Flag_E_", new ItemStack(Blocks.RED_FLOWER));
@@ -53,15 +58,20 @@ public class PlayerItems {
 		items.put("minamotosan", Builder.create(Items.ROTTEN_FLESH).named("spicy strip").get());
 		items.put("zi_nv", Builder.create(Blocks.DOUBLE_PLANT, 2).named("mY lIVe").enchant(Enchantments.EFFICIENCY, 11).get());
 		items.put("CallMeLecten", Builder.create(Items.GLASS_BOTTLE).named("oxygen").get());
-		items.put("HG_Fei", Builder.create(Items.POTIONITEM).named("hydrofluoric acid").get());
+		items.put("HG_Fei", Builder.create(Items.POTIONITEM).potion(PotionTypes.WATER).named("hydrofluoric acid").get());
 		items.put("hai_dan", Builder.create(Items.EGG).named("sea egg").get());
 		items.put("Fallen_Breath", Builder.create(Items.LEATHER_CHESTPLATE).mani(s -> Items.LEATHER_CHESTPLATE.setColor(s, 16742436)).named("fox fur coat").get());
 		items.put("Sanluli36li", Builder.create(Items.TNT_MINECART).named("36li's self-destruct-car").enchant(Enchantments.FORTUNE, 3).get());
 		items.put("shamreltuim", Builder.create(Items.FISH, 3).get());  // puffer fish
 		items.put("YtonE", Builder.create(Items.POTIONITEM).potion(PotionTypes.EMPTY).named("liquid ketone").get());  // uncraftable potion
+		items.put("DawNemo", Builder.create(Blocks.DOUBLE_PLANT, 0).named("Real Man Never Look Round").enchant(Enchantments.THORNS, 1).get());  // sunflower
 		items.put("Van_Nya", Builder.create(Items.RABBIT_STEW).named("Van Nya Stew").get());  // Nya? Nya!
+		items.put("youngdao", Builder.create(Items.STONE_SWORD, 131).named("Murasame").enchant(Enchantments.SHARPNESS, 10).expensive().get());
+		items.put("ql_Lwi", Builder.create(Items.COOKED_FISH).named("Dinner in the belly of a penguin").get());
 		items.put("Azulene0907", Builder.create(Items.SPLASH_POTION).potion(PotionTypes.EMPTY).named("ArBQ").get());  // uncraftable potion
+		items.put("LUZaLID", Builder.create(Items.DYE, 6).named("cyanLu").get());  // uncraftable potion
 		items.put("U_ruby", Builder.create(Items.FEATHER).named("double u").get());
+		items.put("Do1phin_jump", Builder.create(Items.FISH, 2).named("do1phin's food").enchant(Enchantments.UNBREAKING, 3).get());
 	}
 
 	private static class Builder
