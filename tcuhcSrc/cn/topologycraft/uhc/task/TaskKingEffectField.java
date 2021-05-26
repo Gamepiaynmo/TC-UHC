@@ -24,7 +24,7 @@ public class TaskKingEffectField extends Task.TaskTimer
 					if (king.isAlive() && king.getRealPlayer().isPresent()) {
 						double distanceToKing = gamePlayer.getRealPlayer().get().getDistance(king.getRealPlayer().get());
 						if (distanceToKing <= 5) {
-							gamePlayer.getRealPlayer().get().addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 40));
+							gamePlayer.getRealPlayer().get().addPotionEffect(new PotionEffect(MobEffects.SPEED, 40, 0));
 						}
 					}
 				}
