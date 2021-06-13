@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.PotionTypes;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -82,7 +83,16 @@ public class PlayerManager {
 			allPlayerList.add(gamePlayer = new GamePlayer(player));
 		if (gameManager.isGamePlaying()) {
 			if (combatPlayerList.contains(gamePlayer)) {
-				if (gamePlayer.isAlive()) player.setGameType(GameType.SURVIVAL);
+				if (gamePlayer.isAlive()) {
+					player.setGameType(GameType.SURVIVAL);
+					// on game player rejoins, adds:
+					// - 5s WEAKNESS II
+					// - 5s SLOWNESS II
+					// - 1.5s BLINDNESS I
+					player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 100, 1));
+					player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 100, 1));
+					player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 30, 0));
+				}
 				else player.setGameType(GameType.SPECTATOR);
 			} else {
 				player.setGameType(GameType.SPECTATOR);

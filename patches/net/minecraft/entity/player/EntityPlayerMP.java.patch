@@ -9,7 +9,17 @@
  import io.netty.buffer.Unpooled;
  import java.util.Collection;
  import java.util.Iterator;
-@@ -500,7 +502,8 @@
+@@ -136,7 +138,8 @@
+     private int field_71146_ci = -99999999;
+     private boolean field_71147_cj = true;
+     private int field_71144_ck = -99999999;
+-    private int field_147101_bU = 60;
++    // TC Plugin: modified invulnerable time from 60gt to 20gt
++    private int field_147101_bU = 20;
+     private EntityPlayer.EnumChatVisibility field_71143_cn;
+     private boolean field_71140_co = true;
+     private long field_143005_bX = System.currentTimeMillis();
+@@ -500,7 +503,8 @@
          if (!this.field_70170_p.func_82736_K().func_82766_b("keepInventory") && !this.func_175149_v())
          {
              this.func_190776_cN();
@@ -19,7 +29,7 @@
          }
  
          for (ScoreObjective scoreobjective : this.field_70170_p.func_96441_U().func_96520_a(IScoreCriteria.field_96642_c))
-@@ -523,11 +526,22 @@
+@@ -523,11 +527,22 @@
              entitylivingbase.func_191956_a(this, this.field_70744_aE, p_70645_1_);
          }
  
@@ -42,7 +52,7 @@
      }
  
      public void func_191956_a(Entity p_191956_1_, int p_191956_2_, DamageSource p_191956_3_)
-@@ -629,7 +643,23 @@
+@@ -629,7 +644,23 @@
                      }
                  }
  
@@ -67,7 +77,7 @@
              }
          }
      }
-@@ -1359,18 +1389,28 @@
+@@ -1359,18 +1390,28 @@
          return (Entity)(this.field_175401_bS == null ? this : this.field_175401_bS);
      }
  
@@ -103,7 +113,7 @@
      protected void func_184173_H()
      {
          if (this.field_71088_bW > 0 && !this.field_184851_cj)
-@@ -1439,4 +1479,12 @@
+@@ -1439,4 +1480,12 @@
      {
          return this.field_193110_cw;
      }
