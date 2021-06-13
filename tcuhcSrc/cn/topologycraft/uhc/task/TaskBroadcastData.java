@@ -14,7 +14,7 @@ public class TaskBroadcastData extends TaskTimer {
 	private int round = 0;
 	
 	public TaskBroadcastData(int delay)  {
-		super(delay, 100);
+		super(delay, 20);
 	}
 	
 	private String getGraph(int len) {
