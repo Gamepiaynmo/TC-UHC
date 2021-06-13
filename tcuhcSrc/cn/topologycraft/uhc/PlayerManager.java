@@ -88,10 +88,10 @@ public class PlayerManager {
 					// on game player rejoins, adds:
 					// - 5s WEAKNESS II
 					// - 5s SLOWNESS II
-					// - 1.5s BLINDNESS I
+					// - 3s BLINDNESS I
 					player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 100, 1));
 					player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 100, 1));
-					player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 30, 0));
+					player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 60, 0));
 				}
 				else player.setGameType(GameType.SPECTATOR);
 			} else {
@@ -249,7 +249,7 @@ public class PlayerManager {
 				}
 			}
 		}
-		EntityItem entityitem = new EntityItem(player.world, player.posX, player.posY, player.posZ, PlayerItems.getPlayerItem(player.getName()));
+		EntityItem entityitem = new EntityItem(player.world, player.posX, player.posY, player.posZ, PlayerItems.getPlayerItem(player.getName(), player.isBurning()));
         entityitem.setPickupDelay(40);
         player.world.spawnEntity(entityitem);
 	}
