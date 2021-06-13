@@ -20,7 +20,10 @@ public class GameTeam {
 	public GameTeam addPlayer(GamePlayer player) { players.add(player); player.setTeam(this); return this; }
 	public GameTeam removePlayer(GamePlayer player) { players.remove(player); return this; }
 	public Iterable<GamePlayer> getPlayers() { return players; }
-	
+
+	// The first player of the team is always the king
+	public GamePlayer getKing() { return GameManager.getGameMode() == GameManager.EnumMode.KING ? players.get(0) : null; }
+
 	public void clearTeam() {
 		players.clear();
 	}

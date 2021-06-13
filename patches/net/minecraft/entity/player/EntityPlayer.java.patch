@@ -9,7 +9,19 @@
  import java.nio.charset.StandardCharsets;
  import java.util.List;
  import java.util.UUID;
-@@ -1791,6 +1793,9 @@
+@@ -613,7 +615,10 @@
+ 
+             if (!itemstack.func_190926_b() && EnchantmentHelper.func_190939_c(itemstack))
+             {
+-                this.field_71071_by.func_70304_b(i);
++                // TC Plugin: Added tag check for KING mode's king's crown item
++                if (!(itemstack.func_77978_p() != null && itemstack.func_77978_p().func_74764_b("KingsCrown"))) {
++                    this.field_71071_by.func_70304_b(i);
++                }
+             }
+         }
+     }
+@@ -1791,6 +1796,9 @@
          {
              this.func_71029_a(entitylist$entityegginfo.field_151512_d);
          }

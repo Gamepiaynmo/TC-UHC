@@ -122,6 +122,7 @@ public class BookNBT {
 					break;
 				}
 				case SOLO: 
+				case GHOST:
 					text.appendSibling(createTextEvent(line, "/uhc select 9", "Select to fight", TextFormatting.BLACK));
 					break;
 				case BOSS: {
@@ -150,7 +151,8 @@ public class BookNBT {
 		
 		switch ((GameManager.EnumMode) options.getOptionValue("gameMode")) {
 			case BOSS:
-			case NORMAL: {
+			case NORMAL:
+			case KING: {
 				for (GameTeam team : gameManager.getPlayerManager().getTeams()) {
 					ITextComponent text = new TextComponentString(team.getColorfulTeamName() + "\n\n");
 					for (GamePlayer player : team.getPlayers()) {
@@ -160,7 +162,8 @@ public class BookNBT {
 				}
 				break;
 			}
-			case SOLO: {
+			case SOLO:
+			case GHOST: {
 				ITextComponent text = new TextComponentString(TextFormatting.LIGHT_PURPLE + "All Players\n\n");
 				for (GamePlayer player : gameManager.getPlayerManager().getCombatPlayers()) {
 					text.appendSibling(createPlayerText(player));
