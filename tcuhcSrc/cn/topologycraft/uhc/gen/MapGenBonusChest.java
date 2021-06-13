@@ -26,6 +26,8 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public class MapGenBonusChest extends WorldGenerator {
+	public static final String BONUS_CHEST_NAME = "Bonus Chest";
+	public static final String EMPTY_CHEST_NAME = "Empty Chest";
 
 	private static Map<Biome, Double> POSSIBILITY_MAP = Maps.newHashMap();
 	private static Enchantment[] POSSIBLE_ENCHANTMENTS = { Enchantments.POWER, Enchantments.SHARPNESS, Enchantments.UNBREAKING, Enchantments.EFFICIENCY, Enchantments.FIRE_ASPECT, Enchantments.PROTECTION, Enchantments.PROJECTILE_PROTECTION };
@@ -62,6 +64,7 @@ public class MapGenBonusChest extends WorldGenerator {
 				if (!(tileentity instanceof TileEntityChest))
 					return false;
 				TileEntityChest chest = (TileEntityChest) tileentity;
+				chest.setCustomName(EMPTY_CHEST_NAME);
 				this.genChestItem(chest, emptyItemList, false);
 				return true;
 			}
@@ -70,7 +73,7 @@ public class MapGenBonusChest extends WorldGenerator {
 			if (!(tileentity instanceof TileEntityChest))
 				return false;
 			TileEntityChest chest = (TileEntityChest) tileentity;
-			chest.setCustomName("Bonus Chest");
+			chest.setCustomName(BONUS_CHEST_NAME);
 			this.genChestItem(chest, chestItemList, false);
 			this.genChestItem(chest, valuableItemList, true);
 		}

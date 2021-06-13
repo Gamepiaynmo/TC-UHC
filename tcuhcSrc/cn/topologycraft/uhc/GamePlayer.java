@@ -93,6 +93,7 @@ public class GamePlayer extends Taskable {
 		DAMAGE_TAKEN("Damage Taken"),
 		DAMAGE_DEALT("Damage Dealt"),
 		CHEST_FOUND("Chest Found"),
+		EMPTY_CHEST_FOUND("Empty Chest Found"),
 		DIAMOND_FOUND("Diamond Found"),
 		HEALTH_HEALED("Health Healed"),
 		ALIVE_TIME("Alive Time");

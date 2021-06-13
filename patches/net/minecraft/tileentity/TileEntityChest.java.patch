@@ -1,33 +1,47 @@
 --- ../src-base/minecraft/net/minecraft/tileentity/TileEntityChest.java
 +++ ../src-work/minecraft/net/minecraft/tileentity/TileEntityChest.java
-@@ -1,6 +1,8 @@
+@@ -1,6 +1,9 @@
  package net.minecraft.tileentity;
  
  import javax.annotation.Nullable;
 +import cn.topologycraft.uhc.GameManager;
 +import cn.topologycraft.uhc.GamePlayer.EnumStat;
++import cn.topologycraft.uhc.gen.MapGenBonusChest;
  import net.minecraft.block.Block;
  import net.minecraft.block.BlockChest;
  import net.minecraft.entity.player.EntityPlayer;
-@@ -316,6 +318,11 @@
+@@ -316,6 +319,24 @@
  
      public void func_174889_b(EntityPlayer p_174889_1_)
      {
 +        // TC Plugin
-+        if (!p_174889_1_.func_184812_l_() && !p_174889_1_.func_175149_v() && this.func_145818_k_() && this.field_190577_o.equals("Bonus Chest")) {
-+            GameManager.instance.getPlayerManager().getGamePlayer(p_174889_1_).getStat().addStat(EnumStat.CHEST_FOUND, 1);
++        if (!p_174889_1_.func_184812_l_() && !p_174889_1_.func_175149_v()) {
++            EnumStat stat;
++            switch (this.field_190577_o) {
++                case MapGenBonusChest.BONUS_CHEST_NAME:
++                    stat = EnumStat.CHEST_FOUND;
++                    break;
++                case MapGenBonusChest.EMPTY_CHEST_NAME:
++                    stat = EnumStat.EMPTY_CHEST_FOUND;
++                    break;
++                default:
++                    stat = null;
++            }
++            if (stat != null) {
++                GameManager.instance.getPlayerManager().getGamePlayer(p_174889_1_).getStat().addStat(stat, 1);
++            }
 +        }
 +
          if (!p_174889_1_.func_175149_v())
          {
              if (this.field_145987_o < 0)
-@@ -336,6 +343,11 @@
+@@ -336,6 +357,11 @@
  
      public void func_174886_c(EntityPlayer p_174886_1_)
      {
 +        // TC Plugin
-+        if (!p_174886_1_.func_184812_l_() && !p_174886_1_.func_175149_v() && this.func_145818_k_() && this.field_190577_o.equals("Bonus Chest")) {
-+            this.func_190575_a("Opened Bonus Chest");
++        if (!p_174886_1_.func_184812_l_() && !p_174886_1_.func_175149_v() && (this.field_190577_o.equals(MapGenBonusChest.BONUS_CHEST_NAME) || this.field_190577_o.equals(MapGenBonusChest.EMPTY_CHEST_NAME))) {
++            this.func_190575_a("Opened " + this.field_190577_o);
 +        }
 +
          if (!p_174886_1_.func_175149_v() && this.func_145838_q() instanceof BlockChest)
