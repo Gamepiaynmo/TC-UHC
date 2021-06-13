@@ -1,7 +1,9 @@
 --- ../src-base/minecraft/net/minecraft/entity/player/EntityPlayerMP.java
 +++ ../src-work/minecraft/net/minecraft/entity/player/EntityPlayerMP.java
-@@ -2,6 +2,8 @@
+@@ -1,7 +1,10 @@
+ package net.minecraft.entity.player;
  
++import cn.topologycraft.uhc.GamePlayer;
  import com.google.common.collect.Lists;
  import com.mojang.authlib.GameProfile;
 +import cn.topologycraft.uhc.GameManager;
@@ -9,7 +11,7 @@
  import io.netty.buffer.Unpooled;
  import java.util.Collection;
  import java.util.Iterator;
-@@ -136,7 +138,8 @@
+@@ -136,7 +139,8 @@
      private int field_71146_ci = -99999999;
      private boolean field_71147_cj = true;
      private int field_71144_ck = -99999999;
@@ -19,7 +21,7 @@
      private EntityPlayer.EnumChatVisibility field_71143_cn;
      private boolean field_71140_co = true;
      private long field_143005_bX = System.currentTimeMillis();
-@@ -500,7 +503,8 @@
+@@ -500,7 +504,8 @@
          if (!this.field_70170_p.func_82736_K().func_82766_b("keepInventory") && !this.func_175149_v())
          {
              this.func_190776_cN();
@@ -29,7 +31,7 @@
          }
  
          for (ScoreObjective scoreobjective : this.field_70170_p.func_96441_U().func_96520_a(IScoreCriteria.field_96642_c))
-@@ -523,6 +527,16 @@
+@@ -523,6 +528,16 @@
              entitylivingbase.func_191956_a(this, this.field_70744_aE, p_70645_1_);
          }
  
@@ -46,7 +48,7 @@
          this.func_71029_a(StatList.field_188069_A);
          this.func_175145_a(StatList.field_188098_h);
          this.func_70066_B();
-@@ -629,7 +643,23 @@
+@@ -629,7 +644,27 @@
                      }
                  }
  
@@ -59,7 +61,11 @@
 +                if (sourceEntity == null || !(sourceEntity instanceof EntityPlayerMP)) sourceEntity = p_70097_1_.func_76346_g();
 +                if (sourceEntity != null && sourceEntity instanceof EntityPlayerMP) {
 +                    GameManager.instance.getPlayerManager().getGamePlayer(this).getStat().addStat(EnumStat.DAMAGE_TAKEN, p_70097_2_);
-+                    GameManager.instance.getPlayerManager().getGamePlayer((EntityPlayerMP) sourceEntity).getStat().addStat(EnumStat.DAMAGE_DEALT, p_70097_2_);
++                    GamePlayer.PlayerStatistics statistics = GameManager.instance.getPlayerManager().getGamePlayer((EntityPlayerMP) sourceEntity).getStat();
++                    statistics.addStat(EnumStat.DAMAGE_DEALT, p_70097_2_);
++                    if (this.func_96124_cp() != null && this.func_96124_cp().func_142054_a(sourceEntity.func_96124_cp())) {
++                        statistics.addStat(EnumStat.FRIENDLY_FIRE, p_70097_2_);
++                    }
 +                }
 +
 +                // TC Plugin: Player Damage Hook
@@ -71,7 +77,7 @@
              }
          }
      }
-@@ -1359,18 +1389,28 @@
+@@ -1359,18 +1394,28 @@
          return (Entity)(this.field_175401_bS == null ? this : this.field_175401_bS);
      }
  
@@ -107,7 +113,7 @@
      protected void func_184173_H()
      {
          if (this.field_71088_bW > 0 && !this.field_184851_cj)
-@@ -1439,4 +1479,12 @@
+@@ -1439,4 +1484,12 @@
      {
          return this.field_193110_cw;
      }
