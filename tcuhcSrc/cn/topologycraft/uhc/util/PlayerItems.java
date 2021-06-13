@@ -10,6 +10,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
 
@@ -20,16 +21,29 @@ public class PlayerItems {
 
 	private static final Map<String, ItemStack> items = Maps.newLinkedHashMap();
 
-	public static ItemStack getPlayerItem(String playerName) {
+	public static ItemStack getPlayerItem(String playerName, boolean onFire) {
 		ItemStack stack = items.get(playerName);
 		if (stack == null) stack = new ItemStack(Items.PAPER);
 		else stack = stack.copy();
+		// drop smelted item if possible when the player is on fire
+		if (onFire) {
+			ItemStack smeltResult = FurnaceRecipes.instance().getSmeltingResult(stack);
+			if (!smeltResult.isEmpty()) {
+				stack = smeltResult;
+			}
+		}
+		// apply name
 		String moral = playerName + "'s moral(jie) integrity(cao)";
 		if (!stack.hasDisplayName()) stack.setStackDisplayName(moral);
 		else stack.setSingleLore(moral);
+		// apply sharpness I if no enchantment
 		if (stack.getEnchantmentTagList().tagCount() == 0)
 			stack.addEnchantment(Enchantments.SHARPNESS, 1);
 		return stack;
+	}
+
+	public static ItemStack getPlayerItem(String playerName) {
+		return getPlayerItem(playerName, false);
 	}
 
 	// for command /uhc givemorals [<targetName>]
