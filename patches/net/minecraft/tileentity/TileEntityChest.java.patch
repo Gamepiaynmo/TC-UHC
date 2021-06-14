@@ -15,7 +15,7 @@
      public void func_174889_b(EntityPlayer p_174889_1_)
      {
 +        // TC Plugin
-+        if (!p_174889_1_.func_184812_l_() && !p_174889_1_.func_175149_v()) {
++        if (!p_174889_1_.func_184812_l_() && !p_174889_1_.func_175149_v() && this.func_145818_k_()) {
 +            EnumStat stat;
 +            switch (this.field_190577_o) {
 +                case MapGenBonusChest.BONUS_CHEST_NAME:
@@ -40,7 +40,7 @@
      public void func_174886_c(EntityPlayer p_174886_1_)
      {
 +        // TC Plugin
-+        if (!p_174886_1_.func_184812_l_() && !p_174886_1_.func_175149_v() && (this.field_190577_o.equals(MapGenBonusChest.BONUS_CHEST_NAME) || this.field_190577_o.equals(MapGenBonusChest.EMPTY_CHEST_NAME))) {
++        if (!p_174886_1_.func_184812_l_() && !p_174886_1_.func_175149_v() && this.func_145818_k_() && (this.field_190577_o.equals(MapGenBonusChest.BONUS_CHEST_NAME) || this.field_190577_o.equals(MapGenBonusChest.EMPTY_CHEST_NAME))) {
 +            this.func_190575_a("Opened " + this.field_190577_o);
 +        }
 +
