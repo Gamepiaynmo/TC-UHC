@@ -13,7 +13,15 @@
      protected void func_70623_bb()
      {
          if (this.field_82179_bU)
-@@ -707,7 +713,9 @@
+@@ -702,12 +708,16 @@
+                 double d2 = entity.field_70161_v - this.field_70161_v;
+                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
+ 
+-                if (this.func_70692_ba() && d3 > 16384.0D)
++                // TC Plugin: remove immediately despawn, replace with randomly despawn
++//                if (this.canDespawn() && d3 > 16384.0D)
++                if (this.func_70692_ba() && d3 > 16384.0D && this.field_70146_Z.nextInt(200) == 0)
+                 {
                      this.func_70106_y();
                  }
  
@@ -24,7 +32,7 @@
                  {
                      this.func_70106_y();
                  }
-@@ -722,9 +730,11 @@
+@@ -722,9 +732,11 @@
      protected final void func_70626_be()
      {
          ++this.field_70708_bq;
