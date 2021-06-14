@@ -29,18 +29,3 @@
          }
      }
  
-@@ -716,6 +724,14 @@
-         this.field_77990_d.func_74768_a("RepairCost", p_82841_1_);
-     }
- 
-+    // TC Plugin: added method
-+    public void setSingleLore(String lore)
-+    {
-+        NBTTagList loreList = new NBTTagList();
-+        loreList.func_74742_a(new NBTTagString(lore));
-+        this.func_190925_c("display").func_74782_a("Lore", loreList);
-+    }
-+
-     public Multimap<String, AttributeModifier> func_111283_C(EntityEquipmentSlot p_111283_1_)
-     {
-         Multimap<String, AttributeModifier> multimap;
