@@ -316,6 +316,9 @@ public class PlayerManager {
 			else if (source instanceof EntityDamageSource) msg += source.getTrueSource().getName();
 			else msg += source.getDamageType() + (source.getTrueSource() != null ? " by " + source.getTrueSource().getName() : "");
 			player.sendMessage(new TextComponentString(TextFormatting.RED + msg));
+			if (source.getTrueSource() instanceof EntityPlayerMP) {
+				source.getTrueSource().sendMessage(new TextComponentString(String.format("%sYou dealt %.2f damage to %s", TextFormatting.BLUE, amount, player.getName())));
+			}
 		}
 	}
 	
