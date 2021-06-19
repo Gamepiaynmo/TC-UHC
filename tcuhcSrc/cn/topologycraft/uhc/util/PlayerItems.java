@@ -35,7 +35,7 @@ public class PlayerItems {
 		ItemStack stack = items.getOrDefault(playerName, DEFAULT_MORAL).copy();
 		// drop smelted item if possible when the player is on fire
 		if (onFire) {
-			ItemStack smeltResult = FurnaceRecipes.instance().getSmeltingResult(stack);
+			ItemStack smeltResult = FurnaceRecipes.instance().getSmeltingResult(stack).copy();
 			if (!smeltResult.isEmpty()) {
 				if (stack.hasDisplayName()) {
 					smeltResult.setStackDisplayName(stack.getDisplayName());
