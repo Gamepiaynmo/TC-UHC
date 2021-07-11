@@ -97,6 +97,7 @@ public class PlayerItems {
 		items.put("LUZaLID", Builder.create(Items.DYE, 6).named("cyanLu").get());  // cyan dye
 		items.put("U_ruby", Builder.create(Items.FEATHER).named("double u").get());
 		items.put("Do1phin_jump", Builder.create(Items.FISH, 2).named("do1phin's food").enchant(Enchantments.UNBREAKING, 3).get());
+		items.put("kuri_laan", Builder.create(Items.CAKE).named("XiangSuLiRon cake").enchant(Enchantments.LUCK_OF_THE_SEA, 1).get());
 	}
 
 	private static class Builder
