@@ -45,7 +45,7 @@ public class TaskNetherCave extends TaskTimer {
 	@Override
 	public void onTimer() {
 		if (this.hasFinished()) return;
-		if (!GameManager.instance.isGamePlaying()) this.setCanceled();
+		if (!GameManager.instance.isGamePlaying() || GameManager.instance.hasGameEnded()) this.setCanceled();
 		int timeRemaining = GameManager.instance.getGameTimeRemaining();
 		int timePast = gameTime - timeRemaining;
 //		if (timeRemaining == 0) this.setCanceled();
@@ -132,17 +132,19 @@ public class TaskNetherCave extends TaskTimer {
 			for (GamePlayer player : combatPlayers) {
 				player.getRealPlayer().ifPresent(playermp -> {
 					if (glow) playermp.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 200, 1, false, false));
-					if (playermp.posY < minY || playermp.posY > maxY)
-						playermp.attackEntityFrom(DamageSource.IN_WALL, 1.0f);
+					if (playermp.dimension == 0) {
+						if (playermp.posY < minY || playermp.posY > maxY)
+							playermp.attackEntityFrom(DamageSource.IN_WALL, 1.0f);
 
-					float particleY = -1;
-					if (playermp.posY < minY + 5)
-						particleY = minY + 3;
-					if (playermp.posY > maxY - 5)
-						particleY = maxY - 2;
-					if (particleY > 0) {
-						GameManager.instance.getMinecraftServer().worlds[0].spawnParticle(playermp, EnumParticleTypes.PORTAL, false,
-								playermp.posX, particleY, playermp.posZ, 100, 2, 0, 2, 0, 0);
+						float particleY = -1;
+						if (playermp.posY < minY + 5)
+							particleY = minY + 3;
+						if (playermp.posY > maxY - 5)
+							particleY = maxY - 2;
+						if (particleY > 0) {
+							GameManager.instance.getMinecraftServer().worlds[0].spawnParticle(playermp, EnumParticleTypes.PORTAL, false,
+									playermp.posX, particleY, playermp.posZ, 100, 2, 0, 2, 0, 0);
+						}
 					}
 				});
 			}
