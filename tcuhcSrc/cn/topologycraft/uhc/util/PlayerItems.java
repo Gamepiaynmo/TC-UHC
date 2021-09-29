@@ -77,7 +77,7 @@ public class PlayerItems {
 		items.put("Gamepiaynmo", new ItemStack(Items.COAL));
 		items.put("CCS_Covenant", new ItemStack(Items.COOKIE).setStackDisplayName("Crispy Crispy Shark!"));
 		items.put("Lancet_Corgi", Builder.create(Items.IRON_SWORD, 250).named("Lancet").enchant(Enchantments.SHARPNESS, 5).expensive().get());
-		items.put("ajisai_iii", Builder.create(Items.CHICKEN).named("rua aji").get());  // rua!
+		items.put("_ajisairi_", Builder.create(Items.CHICKEN).named("rua aji").get());  // rua!
 		items.put("Aschin", Builder.create(Items.WHEAT).named("comymy").get());
 		items.put("Dou_Bi_Long", Builder.create(Blocks.DRAGON_EGG).named("longbao no egg").enchant(Enchantments.UNBREAKING, 10).enchant(Enchantments.MENDING, 1).get());
 		items.put("minamotosan", Builder.create(Items.ROTTEN_FLESH).named("spicy strip").get());
