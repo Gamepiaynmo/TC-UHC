@@ -35,3 +35,6 @@ server.properties
 usercache.json
 whitelist.json
 /run/
+
+# TC UHC stuff
+/docs/*.pdf
